@@ -6,9 +6,13 @@ Web estática ES/EN para aeropuerto, turismo, Pro Luxury, eventos, flete, carga,
 
 ## Demo y código
 
-Repositorio privado: https://github.com/mitchell-castillo/procarga
+Repositorio público: https://github.com/mitchell-castillo/procarga
 
-La demo se aloja en Netlify. `netlify.toml` publica `dist/` sin compilación. Subir exclusivamente los archivos de `dist/` para una publicación manual. El acceso del visitante se configura como público en ese proyecto; el código en GitHub permanece privado.
+Demo en GitHub Pages: https://mitchell-castillo.github.io/procarga/
+
+El workflow `.github/workflows/pages.yml` verifica las solicitudes de cotización y publica exclusivamente `dist/` cuando cambia `main`. En Settings → Pages, la fuente debe ser **GitHub Actions**. No hay compilación ni dependencias necesarias para publicar.
+
+La demo es pública y no pide cuenta, contraseña ni 2FA a los visitantes. El propietario autorizó hacer público el repositorio el 14 de octubre de 2026. `netlify.toml` y `exports/NETLIFY.txt` documentan la alternativa anterior; Netlify no es necesario para esta demo.
 
 ## Ejecutar
 
@@ -49,8 +53,8 @@ Las pruebas de navegador levantan su propio servidor efímero en `127.0.0.1`, lo
 
 Consultar `DECISIONS.md` para las fuentes y las decisiones de diseño, y `VALIDATION.md` para las pruebas efectivamente ejecutadas.
 
-Sites se registró una sola vez tras recibir autorización explícita para su credencial temporal. `.openai/hosting.json` conserva el ID `appgprj_6acec4214ed481918c3f171ee3031956` y declara `dist/`. El flujo autorizado es guardar y desplegar con acceso privado al propietario. Ver `HOSTING_PENDING.md` para el historial y `evidence/deployment-final.json`, cuando exista, para el resultado observado del despliegue.
+La publicación anterior en Sites conserva su configuración en `.openai/hosting.json`. `HOSTING_PENDING.md` documenta esa fase histórica; la demo actual usa GitHub Pages.
 
-`noindex` es una indicación a buscadores y **no es un mecanismo de acceso privado**. Sites debe mantener su control de acceso al propietario; no subir estos archivos a un host público durante la revisión.
+`noindex` es una indicación a buscadores y **no es un mecanismo de acceso privado**. Se conserva para esta demo pública. GitHub Pages no aplica el archivo `_headers`; la política de recursos y el referrer se declaran también en el HTML para conservarlas entre hosts.
 
 DotBoard ya tiene proyecto y tarjeta; no fueron creados ni modificados aquí. No se accedió a Boardly, Philips ni repos ajenos.
