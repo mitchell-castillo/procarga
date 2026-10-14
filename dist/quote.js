@@ -3,7 +3,7 @@ export const WHATSAPP_NUMBER = '18092532740';
 export const SERVICES = {
   airport: { es: 'Traslado de aeropuerto', en: 'Airport transfer' },
   corporate: { es: 'Transporte corporativo / VIP', en: 'Corporate / VIP transportation' },
-  chauffeur: { es: 'Chauffeur privado', en: 'Private chauffeur' },
+  chauffeur: { es: 'Chofer privado', en: 'Private chauffeur' },
   events: { es: 'Eventos y bodas', en: 'Events and weddings' },
   tourism: { es: 'Transporte turístico', en: 'Tourism transportation' },
   cargo: { es: 'Flete, carga y mudanzas', en: 'Freight, cargo and moving' },
