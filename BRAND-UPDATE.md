@@ -2,7 +2,7 @@
 
 Actualización: 14 de octubre de 2026, hora de República Dominicana.
 
-La demo pública vigente se publica desde GitHub en https://mitchell-castillo.github.io/procarga/. Se incorporaron, a petición del propietario, la portada costera y el interior de asientos del [Site Signature](https://pro-carga-signature-oct2026.juan-mitchell.chatgpt.site/), usando sus WebP originales. Se conservan el logo, colores, fotos de Instagram y paisaje anterior. Se quitaron los rótulos «Imagen de concepto»; la procedencia ilustrativa se mantiene discretamente en el pie.
+La demo pública vigente se publica desde GitHub en https://mitchell-castillo.github.io/procarga/. Se incorporaron, a petición del propietario, la portada costera y el interior de asientos del [Site Signature](https://pro-carga-signature-oct2026.juan-mitchell.chatgpt.site/), usando sus WebP originales. Se conservan el logo, colores, fotos de Instagram y paisaje anterior. Se quitaron los rótulos «Imagen de concepto», las atribuciones de Instagram sobre las fotos y la nota de procedencia del pie a petición del propietario. Las fuentes de recursos se documentan en este archivo; la web muestra contenido dirigido al cliente.
 
 La portada explica «Traslados y logística. A tu manera.». Los seis accesos rápidos preparan el tipo de servicio; las sugerencias de destinos rellenan el formulario sin enviar datos. Pro Luxury tiene acceso en el menú, y cotizar muestra los pasos ruta → revisión → WhatsApp. No se añadieron promesas de inventario, cobertura o disponibilidad.
 
