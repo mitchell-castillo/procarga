@@ -1,0 +1,19 @@
+ProCarga — demo en Netlify
+
+Paquete listo: procarga-demo-netlify.zip
+Contiene index.html en la raíz, CSS, JavaScript, logo, fotografías y fuentes.
+No incluye metadatos de Sites, repositorio Git ni credenciales.
+
+Publicación inicial realizada con Netlify Drop:
+https://jade-flan-de5d29.netlify.app
+
+Estado: pendiente de vinculación a la cuenta del propietario.
+Netlify elimina las publicaciones sin reclamar una hora después de crearlas.
+El enlace y el acceso definitivos se verificarán después de reclamar la demo.
+
+Para conservarla, completar el registro desde la pestaña de Netlify abierta
+en esta conversación y seguir el flujo Claim this site.
+
+Para futuras actualizaciones, subir de nuevo el contenido de dist/ en
+la sección Deploys del mismo proyecto. netlify.toml declara dist como
+directorio de publicación si se utiliza una integración con Git.

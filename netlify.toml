@@ -1,0 +1,4 @@
+[build]
+  publish = "dist"
+
+# La web es estática: no necesita un comando de compilación.

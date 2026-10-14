@@ -1,0 +1,105 @@
+{
+  "startedAt": "2026-10-13T23:01:59.687Z",
+  "browser": [
+    {
+      "name": "Chromium",
+      "version": "148.0.7778.96",
+      "playwright": "1.62.1"
+    }
+  ],
+  "checks": [
+    {
+      "check": "Desktop ES 1440px: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "Spanish: all translation keys populated",
+      "status": "passed"
+    },
+    {
+      "check": "Desktop Spanish rendered and screenshot captured",
+      "status": "passed"
+    },
+    {
+      "check": "All anchor targets exist; navigation visits services, experience and contact",
+      "status": "passed"
+    },
+    {
+      "check": "Service link preselects service and reveals optional details",
+      "status": "passed"
+    },
+    {
+      "check": "Empty fields rejected with accessible errors and focus",
+      "status": "passed"
+    },
+    {
+      "check": "English: all translation keys populated",
+      "status": "passed"
+    },
+    {
+      "check": "Desktop EN 1440px: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "English toggle translates errors and metadata; direct ?lang=en survives reload",
+      "status": "passed"
+    },
+    {
+      "check": "Browser rejects zero/fractional passengers, past dates and identical routes",
+      "status": "passed"
+    },
+    {
+      "check": "English request reviewed locally; exact WhatsApp number, payload and safe literal rendering verified",
+      "status": "passed"
+    },
+    {
+      "check": "Language change updates prepared draft; edit preserves trip inputs",
+      "status": "passed"
+    },
+    {
+      "check": "All contact WhatsApp links target the exact number with safe new-tab attributes",
+      "status": "passed"
+    },
+    {
+      "check": "Mobile ES 390px: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "Mobile navigation opens, closes on navigation, and closes with Escape",
+      "status": "passed"
+    },
+    {
+      "check": "Mobile EN 390px: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "Mobile EN prepared request: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "Mobile English form prepares a reviewed draft",
+      "status": "passed"
+    },
+    {
+      "check": "Small mobile EN 320px: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "Tablet EN 768px: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "FAQ expands and makes non-confirmation explicit",
+      "status": "passed"
+    },
+    {
+      "check": "No external network requests or browser errors during tests",
+      "status": "passed"
+    }
+  ],
+  "externalRequests": [],
+  "consoleErrors": [],
+  "note": "Synthetic inputs only. No external page opened or message sent.",
+  "status": "passed",
+  "completedAt": "2026-10-13T23:02:01.999Z"
+}

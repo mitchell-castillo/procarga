@@ -1,0 +1,9 @@
+node_modules/
+*.log
+evidence/*.png
+evidence/*.jpg
+evidence/deployment-final.json
+exports/*.zip
+.netlify/
+.env
+.env.*
