@@ -1,4 +1,4 @@
-import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js';
+import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js?v=20261015-fleet';
 
 const copy = {
   "es": {
