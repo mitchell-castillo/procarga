@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-15T19:06:09.299Z",
+  "startedAt": "2026-10-15T19:20:46.361Z",
   "browser": [
     {
       "name": "Chromium",
@@ -29,11 +29,15 @@
       "status": "passed"
     },
     {
-      "check": "Local MP4 videos have native inline controls, lazy loading and valid media metadata",
+      "check": "Service-led page has no vehicle shopping controls; vehicle preference is optional and collapsed",
       "status": "passed"
     },
     {
-      "check": "Fleet galleries switch actual interior/exterior photos; lightbox closes and returns keyboard focus",
+      "check": "Three service moments decode in the optional video dialog; closing pauses video and returns focus",
+      "status": "passed"
+    },
+    {
+      "check": "Optional experience galleries retain full photos, Toyota two outside/two inside, keyboard navigation and focus",
       "status": "passed"
     },
     {
@@ -41,7 +45,7 @@
       "status": "passed"
     },
     {
-      "check": "Service link preselects service and reveals optional details",
+      "check": "Service link preselects the service without forcing optional vehicle preferences",
       "status": "passed"
     },
     {
@@ -77,7 +81,7 @@
       "status": "passed"
     },
     {
-      "check": "Each fleet quote link selects its vehicle and preserves the existing route",
+      "check": "Group travel action prepares a service and preserves the existing route",
       "status": "passed"
     },
     {
@@ -90,6 +94,14 @@
     },
     {
       "check": "Mobile reading paragraphs use at least 16px text",
+      "status": "passed"
+    },
+    {
+      "check": "Mobile optional video experience: no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "check": "Mobile service media dialogs fit the viewport and expose the group interior without leaving the service flow",
       "status": "passed"
     },
     {
@@ -133,5 +145,5 @@
   "consoleErrors": [],
   "note": "Synthetic inputs only. No external page opened or message sent.",
   "status": "passed",
-  "completedAt": "2026-10-15T19:06:16.539Z"
+  "completedAt": "2026-10-15T19:20:52.723Z"
 }

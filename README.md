@@ -1,8 +1,8 @@
 # Pro Carga — transporte y logística
 
-Actualización vigente del cliente y verificación: [CLIENT-REFRESH.md](CLIENT-REFRESH.md). La web usa el logo original, azul marino, celeste y blanco, con Manrope alojada localmente. [BRAND-UPDATE.md](BRAND-UPDATE.md) y [REDESIGN.md](REDESIGN.md) documentan las versiones visuales anteriores.
+Experiencia y verificación vigentes: [SERVICE-EXPERIENCE.md](SERVICE-EXPERIENCE.md). La web usa el logo original, azul marino, celeste y blanco, con Manrope alojada localmente. [CLIENT-REFRESH.md](CLIENT-REFRESH.md), [BRAND-UPDATE.md](BRAND-UPDATE.md) y [REDESIGN.md](REDESIGN.md) documentan versiones anteriores.
 
-Web estática ES/EN para aeropuerto, turismo, Pro Luxury, eventos, flete, carga y mudanzas en República Dominicana. Flota: Chevrolet Suburban, Cadillac y minibús Toyota de 19 pasajeros. El formulario prepara un mensaje que el visitante revisa y decide abrir y enviar por WhatsApp al **+1 809 253 2740**. Carga no requiere pasajeros ni vehículo de pasajeros.
+Web estática ES/EN para organizar traslados de aeropuerto, turismo, Pro Luxury, eventos, flete, carga y mudanzas en República Dominicana. Presenta los servicios según la ocasión del visitante, con fotos y videos opcionales de la experiencia. El formulario prepara un mensaje que el visitante revisa y decide abrir y enviar por WhatsApp al **+1 809 253 2740**. Carga no requiere pasajeros ni vehículo de pasajeros.
 
 ## Demo y código
 
@@ -45,8 +45,8 @@ Las pruebas de navegador levantan su propio servidor efímero en `127.0.0.1`, lo
 - Navegación por secciones y menú móvil con `aria-expanded`, cierre al navegar y Escape.
 - Idioma ES/EN, títulos, metadatos, textos, etiquetas, validación y mensajes. El idioma se conserva en la URL; los datos de la ruta no se guardan en almacenamiento persistente.
 - Origen, destino, fecha y pasajeros obligatorios. Fecha de referencia: calendario de República Dominicana. Rechaza fechas pasadas/imposibles, lugares vacíos o idénticos y pasajeros no enteros positivos.
-- Servicio, vehículo de preferencia y detalles opcionales. Los enlaces de flota preparan el vehículo y servicio sin borrar la ruta. La capacidad de 19 pasajeros del minibús es la proporcionada por el cliente; el formulario admite grupos de otros tamaños para consultar alternativas.
-- Fotos ampliables y vistas exterior/interior; dos fotos de cada vista del minibús. Videos locales con controles, sin reproducción automática ni descargas de video antes de reproducir.
+- Servicio y detalles opcionales; la preferencia de vehículo está dentro de los detalles. Los enlaces de servicios preparan la solicitud sin borrar la ruta. La capacidad de 19 pasajeros del minibús es la proporcionada por el cliente; el formulario admite grupos de otros tamaños para consultar alternativas.
+- Galerías opcionales de la experiencia, con dos fotos exteriores y dos interiores del minibús. Tres videos locales en un diálogo, con controles y sin reproducción automática; cerrar pausa el video.
 - El visitante ve el borrador completo antes de continuar a WhatsApp. Editar conserva los campos; cambiar idioma traduce el borrador.
 - Sin precios automáticos, pagos, cuentas, backend, analítica, cookies, reservas confirmadas ni solicitudes de red en segundo plano.
 

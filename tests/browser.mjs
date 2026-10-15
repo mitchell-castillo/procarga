@@ -56,61 +56,63 @@ try {
   passed('All initial content photos decode successfully');
   await page.screenshot({path:resolve(evidencePath,'desktop-es.png'),fullPage:true});
   passed('Desktop Spanish rendered and screenshot captured');
-  const videos=await page.locator('video').evaluateAll(elements=>elements.map(video=>({
-    controls:video.controls, playsInline:video.playsInline, autoplay:video.autoplay,
-    preload:video.preload, poster:video.poster, source:video.currentSrc || video.src || video.querySelector('source')?.src,
-  })));
-  assert.ok(videos.length>0,'At least one real vehicle video is present');
-  for(const video of videos) {
-    assert.equal(video.controls,true);
-    assert.equal(video.playsInline,true);
-    assert.equal(video.autoplay,false);
-    assert.equal(video.preload,'none');
-    assert.ok(video.poster);
-    assert.equal(new URL(video.source).origin,base);
-    const mediaResponse=await context.request.head(video.source);
+  assert.equal(await page.locator('[data-gallery-view], [data-vehicle]').count(),0);
+  assert.equal(await page.locator('.hero-actions .text-link').getAttribute('href'),'#servicios');
+  assert.equal(await page.locator('#vehicle').isVisible(),false);
+  passed('Service-led page has no vehicle shopping controls; vehicle preference is optional and collapsed');
+  const film=page.locator('#experience-film');
+  assert.equal(await page.locator('#film-dialog').isVisible(),false);
+  assert.equal(await film.getAttribute('preload'),'none');
+  assert.equal(await film.evaluate(video=>video.controls && video.playsInline && !video.autoplay),true);
+  await page.locator('[data-open-films]').click();
+  assert.equal(await page.locator('#film-dialog').isVisible(),true);
+  for(const key of ['cabin','arrival','walkaround']) {
+    await page.locator(`[data-film="${key}"]`).click();
+    assert.equal(await page.locator(`[data-film="${key}"]`).getAttribute('aria-pressed'),'true');
+    await page.waitForFunction(()=>{
+      const video=document.querySelector('#experience-film');
+      return video.readyState>=1 && video.videoWidth>0 && video.duration>0;
+    },null,{timeout:15000});
+    const source=await film.locator('source').getAttribute('src');
+    assert.ok(source.endsWith(`suburban-${key}.mp4`));
+    const mediaResponse=await context.request.head(new URL(source,base).href);
     assert.equal(mediaResponse.status(),200);
     assert.match(mediaResponse.headers()['content-type'],/^video\/mp4/);
   }
-  await page.locator('video').first().evaluate(video=>{video.preload='metadata';video.load();});
-  await page.waitForFunction(()=>{
-    const video=document.querySelector('video');
-    return video.readyState>=1 && video.videoWidth>0 && video.duration>0;
-  },null,{timeout:15000});
-  passed('Local MP4 videos have native inline controls, lazy loading and valid media metadata');
-  const galleries=page.locator('[data-fleet-gallery]');
-  assert.ok(await galleries.count()>=2);
-  for(const vehicle of ['suburban','toyota']) {
-    const gallery=page.locator(`[data-fleet-gallery="${vehicle}"]`);
-    const exterior=gallery.locator('[data-gallery-view="exterior"]');
-    const interior=gallery.locator('[data-gallery-view="interior"]');
-    const exteriorSource=await gallery.locator('.fleet-gallery img').first().getAttribute('src');
-    await interior.click();
-    assert.equal(await interior.getAttribute('aria-pressed'),'true');
-    assert.equal(await exterior.getAttribute('aria-pressed'),'false');
-    assert.notEqual(await gallery.locator('.fleet-gallery img').first().getAttribute('src'),exteriorSource);
-    await gallery.locator('.fleet-gallery img').evaluateAll(images=>Promise.all(images.map(image=>{image.loading='eager';return image.decode();})));
-    if(vehicle==='toyota') assert.equal(await gallery.locator('.fleet-gallery img').count(),2);
-    else assert.ok(await gallery.locator('.fleet-gallery img').count()>=1);
-    const photo=gallery.locator('button.fleet-photo').first();
-    const selectedSource=await photo.locator('img').getAttribute('src');
-    await photo.click();
-    assert.equal(await page.locator('#media-dialog').getAttribute('open'),'');
-    assert.equal(new URL(await page.locator('#media-full-image').getAttribute('src'),base).href,new URL(selectedSource,base).href);
-    await page.waitForFunction(()=>document.querySelector('#media-full-image').naturalWidth>0);
+  await page.keyboard.press('Escape');
+  assert.equal(await page.locator('#film-dialog').isVisible(),false);
+  assert.equal(await film.evaluate(video=>video.paused),true);
+  assert.equal(await page.locator('[data-open-films]').evaluate(button=>document.activeElement===button),true);
+  passed('Three service moments decode in the optional video dialog; closing pauses video and returns focus');
+  for(const [collection,expected] of [['luxury',2],['group',4]]) {
+    const trigger=page.locator(`[data-open-gallery="${collection}"]`).first();
+    await trigger.click();
+    assert.equal(await page.locator('#media-dialog').isVisible(),true);
+    assert.equal(await page.locator('.media-thumb:visible').count(),expected);
+    const sources=[];
+    for(let i=0;i<expected;i++) {
+      await page.locator(`.media-thumb[data-photo-index="${i}"]`).click();
+      await page.locator('#media-full-image').evaluate(image=>image.decode());
+      sources.push(await page.locator('#media-full-image').getAttribute('src'));
+      assert.equal(await page.locator('#media-count').innerText(),`${i+1} / ${expected}`);
+    }
+    assert.equal(new Set(sources).size,expected);
+    if(collection==='group') {
+      assert.equal(sources.filter(src=>src.includes('interior')).length,2);
+      assert.equal(sources.filter(src=>!src.includes('interior')).length,2);
+    }
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await page.locator('#media-count').innerText(),`1 / ${expected}`);
+    await page.keyboard.press('ArrowLeft');
+    assert.equal(await page.locator('#media-count').innerText(),`${expected} / ${expected}`);
     await page.keyboard.press('Escape');
-    assert.equal(await page.locator('#media-dialog').getAttribute('open'),null);
-    assert.equal(await photo.evaluate(button=>document.activeElement===button),true);
-    await photo.click();
+    assert.equal(await page.locator('#media-dialog').isVisible(),false);
+    assert.equal(await trigger.evaluate(button=>document.activeElement===button),true);
+    await trigger.click();
     await page.locator('#media-close').click();
-    assert.equal(await page.locator('#media-dialog').getAttribute('open'),null);
-    await exterior.click();
-    assert.equal(await exterior.getAttribute('aria-pressed'),'true');
-    assert.equal(await gallery.locator('.fleet-gallery img').first().getAttribute('src'),exteriorSource);
-    if(vehicle==='toyota') assert.equal(await gallery.locator('.fleet-gallery img').count(),2);
-    else assert.ok(await gallery.locator('.fleet-gallery img').count()>=1);
+    assert.equal(await page.locator('#media-dialog').isVisible(),false);
   }
-  passed('Fleet galleries switch actual interior/exterior photos; lightbox closes and returns keyboard focus');
+  passed('Optional experience galleries retain full photos, Toyota two outside/two inside, keyboard navigation and focus');
   const anchors=await page.locator('a[href^="#"]').evaluateAll(links=>links.map(link=>({href:link.getAttribute('href'),exists:!!document.getElementById(link.getAttribute('href').slice(1))})));
   assert.ok(anchors.every(anchor=>anchor.exists));
   await page.locator('#navigation a[href="#servicios"]').click();
@@ -122,8 +124,8 @@ try {
   passed('All anchor targets exist; navigation visits services, experience and contact');
   await page.locator('[data-service="airport"]').first().click();
   assert.equal(await page.locator('#service').inputValue(),'airport');
-  assert.equal(await page.locator('.trip-details').getAttribute('open'),'');
-  passed('Service link preselects service and reveals optional details');
+  assert.equal(await page.locator('#vehicle').isVisible(),false);
+  passed('Service link preselects the service without forcing optional vehicle preferences');
   await page.locator('#quote-form button[type=submit]').click();
   assert.equal(await page.locator('[aria-invalid="true"]').count(),4);
   assert.equal(await page.evaluate(()=>document.activeElement.id),'origin');
@@ -202,26 +204,38 @@ try {
   await page.locator('[data-service="airport"]').first().click();
   assert.equal(await page.locator('#passengers').isVisible(),true);
   passed('New destinations fill route without losing origin or vehicle; cargo hides passenger requirement');
-  for(const vehicle of ['suburban','cadillac','toyota']) {
-    await page.locator(`[data-vehicle="${vehicle}"]`).first().click();
-    assert.equal(await page.locator('#vehicle').inputValue(),vehicle);
-    assert.equal(await page.locator('#origin').inputValue(),'Synthetic Airport & Test');
-    assert.equal(await page.locator('#destination').inputValue(),'Santiago');
-  }
-  passed('Each fleet quote link selects its vehicle and preserves the existing route');
+  await page.locator('#viajes-en-grupo [data-service="tourism"]').click();
+  assert.equal(await page.locator('#service').inputValue(),'tourism');
+  assert.equal(await page.locator('#origin').inputValue(),'Synthetic Airport & Test');
+  assert.equal(await page.locator('#destination').inputValue(),'Santiago');
+  passed('Group travel action prepares a service and preserves the existing route');
   const contactLinks=await page.locator('[data-whatsapp-contact]').evaluateAll(links=>links.map(el=>({href:el.href,target:el.target,rel:el.rel})));
   assert.ok(contactLinks.every(link=>new URL(link.href).pathname==='/18092532740'&&link.target==='_blank'&&link.rel.includes('noopener')));
   passed('All contact WhatsApp links target the exact number with safe new-tab attributes');
   await page.goto(base);
   await page.setViewportSize({width:390,height:844});
   await noOverflow(page,'Mobile ES 390px');
-  const mobileType=await page.locator('.hero-description, .service-card p, .luxury-copy>p:not(.eyebrow), .steps p, .faq-list p').evaluateAll(elements=>elements.map(element=>({
+  const mobileType=await page.locator('.hero-description, .service-card p, .luxury-copy>p:not(.eyebrow):not(.luxury-model-note), .group-copy>p:not(.eyebrow), .steps p, .faq-list p').evaluateAll(elements=>elements.map(element=>({
     text:element.textContent.slice(0,50), size:parseFloat(getComputedStyle(element).fontSize),
   })));
   assert.ok(mobileType.length>0);
   assert.ok(mobileType.every(text=>text.size>=16),`Mobile reading text: ${JSON.stringify(mobileType)}`);
   passed('Mobile reading paragraphs use at least 16px text');
   await page.screenshot({path:resolve(evidencePath,'mobile-es.png'),fullPage:true});
+  await page.locator('[data-open-films]').click();
+  const filmBounds=await page.locator('#film-dialog').boundingBox();
+  assert.ok(filmBounds.width<=390 && filmBounds.height<=844);
+  await noOverflow(page,'Mobile optional video experience');
+  await page.locator('#film-close').click();
+  assert.equal(await page.locator('#experience-film').evaluate(video=>video.paused),true);
+  await page.locator('[data-open-gallery="group"]').first().click();
+  await page.locator('.media-thumb[data-photo-index="3"]').click();
+  await page.locator('#media-full-image').evaluate(image=>image.decode());
+  assert.match(await page.locator('#media-full-image').getAttribute('src'),/interior-rows/);
+  const galleryBounds=await page.locator('#media-dialog').boundingBox();
+  assert.ok(galleryBounds.width<=390 && galleryBounds.height<=844);
+  await page.keyboard.press('Escape');
+  passed('Mobile service media dialogs fit the viewport and expose the group interior without leaving the service flow');
   assert.equal(await page.locator('#navigation').isVisible(),false);
   await page.locator('.menu-toggle').click();
   assert.equal(await page.locator('#navigation').isVisible(),true);
