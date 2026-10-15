@@ -1,0 +1,143 @@
+{
+  "images": [
+    {
+      "source": "eae22ec3-2aee-4652-8eb2-d11e9eee3c5b.jpg",
+      "file": "suburban-panorama.webp",
+      "small": "suburban-panorama-640.webp",
+      "dimensions": [
+        1069,
+        1008
+      ],
+      "suggestedObjectPosition": "50% 42%",
+      "bytes": 71256
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.30.33 PM.jpeg",
+      "file": "suburban-front.webp",
+      "small": "suburban-front-640.webp",
+      "dimensions": [
+        960,
+        1280
+      ],
+      "suggestedObjectPosition": "50% 43%",
+      "bytes": 294098
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.32.14 PM.jpeg",
+      "file": "suburban-garden.webp",
+      "small": "suburban-garden-640.webp",
+      "dimensions": [
+        1050,
+        1400
+      ],
+      "suggestedObjectPosition": "10% 40%",
+      "bytes": 344138
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.34.28 PM.jpeg",
+      "file": "suburban-coast.webp",
+      "small": "suburban-coast-640.webp",
+      "dimensions": [
+        1050,
+        1400
+      ],
+      "suggestedObjectPosition": "75% 48%",
+      "bytes": 118268
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.35.36 PM.jpeg",
+      "file": "suv-lineup.webp",
+      "small": "suv-lineup-640.webp",
+      "dimensions": [
+        1066,
+        1280
+      ],
+      "suggestedObjectPosition": "55% 55%",
+      "bytes": 116982
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.42.16 PM.jpeg",
+      "file": "toyota-hiace-front.webp",
+      "small": "toyota-hiace-front-640.webp",
+      "dimensions": [
+        1170,
+        1163
+      ],
+      "suggestedObjectPosition": "50% 49%",
+      "bytes": 105584
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.42.16 PM (1).jpeg",
+      "file": "toyota-hiace-side.webp",
+      "small": "toyota-hiace-side-640.webp",
+      "dimensions": [
+        1170,
+        1153
+      ],
+      "suggestedObjectPosition": "50% 54%",
+      "bytes": 249762
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.42.17 PM.jpeg",
+      "file": "toyota-hiace-rear.webp",
+      "small": "toyota-hiace-rear-640.webp",
+      "dimensions": [
+        1170,
+        1046
+      ],
+      "suggestedObjectPosition": "50% 50%",
+      "bytes": 197122
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.42.17 PM (1).jpeg",
+      "file": "toyota-hiace-interior-angle.webp",
+      "small": "toyota-hiace-interior-angle-640.webp",
+      "dimensions": [
+        1170,
+        1157
+      ],
+      "suggestedObjectPosition": "50% 53%",
+      "bytes": 201826
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 6.42.17 PM (2).jpeg",
+      "file": "toyota-hiace-interior-rows.webp",
+      "small": "toyota-hiace-interior-rows-640.webp",
+      "dimensions": [
+        1170,
+        1150
+      ],
+      "suggestedObjectPosition": "50% 50%",
+      "bytes": 148598
+    }
+  ],
+  "videos": [
+    {
+      "source": "WhatsApp Video 2026-10-14 at 6.29.30 PM.mp4",
+      "file": "suburban-cabin.mp4",
+      "poster": "suburban-cabin-poster.webp",
+      "sourceStartSeconds": 14,
+      "durationSeconds": 8,
+      "audio": false,
+      "bytes": 772781
+    },
+    {
+      "source": "WhatsApp Video 2026-10-14 at 6.32.48 PM.mp4",
+      "file": "suburban-arrival.mp4",
+      "poster": "suburban-arrival-poster.webp",
+      "sourceStartSeconds": 0,
+      "durationSeconds": 4.23,
+      "audio": false,
+      "bytes": 397268
+    },
+    {
+      "source": "WhatsApp Video 2026-10-14 at 6.34.00 PM.mp4",
+      "file": "suburban-walkaround.mp4",
+      "poster": "suburban-walkaround-poster.webp",
+      "sourceStartSeconds": 0,
+      "durationSeconds": 6.5,
+      "audio": false,
+      "bytes": 621455
+    }
+  ]
+}

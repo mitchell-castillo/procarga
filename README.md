@@ -1,8 +1,8 @@
 # Pro Carga — transporte y logística
 
-Dirección visual, fuentes de marca y verificación vigentes: [BRAND-UPDATE.md](BRAND-UPDATE.md). La web usa el logo original de Instagram, azul marino, celeste y blanco, con Manrope alojada localmente. [REDESIGN.md](REDESIGN.md) documenta la versión visual anterior.
+Actualización vigente del cliente y verificación: [CLIENT-REFRESH.md](CLIENT-REFRESH.md). La web usa el logo original, azul marino, celeste y blanco, con Manrope alojada localmente. [BRAND-UPDATE.md](BRAND-UPDATE.md) y [REDESIGN.md](REDESIGN.md) documentan las versiones visuales anteriores.
 
-Web estática ES/EN para aeropuerto, turismo, Pro Luxury, eventos, flete, carga, mudanzas y mensajería en República Dominicana. El formulario prepara un mensaje que el visitante revisa y decide abrir y enviar por WhatsApp al **+1 809 253 2740**. Carga y mensajería no requieren pasajeros.
+Web estática ES/EN para aeropuerto, turismo, Pro Luxury, eventos, flete, carga y mudanzas en República Dominicana. Flota: Chevrolet Suburban, Cadillac y minibús Toyota de 19 pasajeros. El formulario prepara un mensaje que el visitante revisa y decide abrir y enviar por WhatsApp al **+1 809 253 2740**. Carga no requiere pasajeros ni vehículo de pasajeros.
 
 ## Demo y código
 
@@ -45,7 +45,8 @@ Las pruebas de navegador levantan su propio servidor efímero en `127.0.0.1`, lo
 - Navegación por secciones y menú móvil con `aria-expanded`, cierre al navegar y Escape.
 - Idioma ES/EN, títulos, metadatos, textos, etiquetas, validación y mensajes. El idioma se conserva en la URL; los datos de la ruta no se guardan en almacenamiento persistente.
 - Origen, destino, fecha y pasajeros obligatorios. Fecha de referencia: calendario de República Dominicana. Rechaza fechas pasadas/imposibles, lugares vacíos o idénticos y pasajeros no enteros positivos.
-- Servicio y detalles opcionales. No se fija capacidad de vehículo.
+- Servicio, vehículo de preferencia y detalles opcionales. Los enlaces de flota preparan el vehículo y servicio sin borrar la ruta. La capacidad de 19 pasajeros del minibús es la proporcionada por el cliente; el formulario admite grupos de otros tamaños para consultar alternativas.
+- Fotos ampliables y vistas exterior/interior; dos fotos de cada vista del minibús. Videos locales con controles, sin reproducción automática ni descargas de video antes de reproducir.
 - El visitante ve el borrador completo antes de continuar a WhatsApp. Editar conserva los campos; cambiar idioma traduce el borrador.
 - Sin precios automáticos, pagos, cuentas, backend, analítica, cookies, reservas confirmadas ni solicitudes de red en segundo plano.
 

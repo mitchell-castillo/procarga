@@ -1,9 +1,9 @@
 {
-  "startedAt": "2026-10-13T23:01:59.687Z",
+  "startedAt": "2026-10-15T19:02:40.867Z",
   "browser": [
     {
       "name": "Chromium",
-      "version": "148.0.7778.96",
+      "version": "155.0.8059.80",
       "playwright": "1.62.1"
     }
   ],
@@ -17,7 +17,23 @@
       "status": "passed"
     },
     {
+      "check": "Removed courier service is absent; Samaná, Boca Chica and Santiago are available destinations",
+      "status": "passed"
+    },
+    {
+      "check": "All initial content photos decode successfully",
+      "status": "passed"
+    },
+    {
       "check": "Desktop Spanish rendered and screenshot captured",
+      "status": "passed"
+    },
+    {
+      "check": "Local MP4 videos have native inline controls, lazy loading and valid media metadata",
+      "status": "passed"
+    },
+    {
+      "check": "Fleet galleries switch actual interior/exterior photos; lightbox closes and returns keyboard focus",
       "status": "passed"
     },
     {
@@ -57,6 +73,14 @@
       "status": "passed"
     },
     {
+      "check": "New destinations fill route without losing origin or vehicle; cargo hides passenger requirement",
+      "status": "passed"
+    },
+    {
+      "check": "Each fleet quote link selects its vehicle and preserves the existing route",
+      "status": "passed"
+    },
+    {
       "check": "All contact WhatsApp links target the exact number with safe new-tab attributes",
       "status": "passed"
     },
@@ -65,7 +89,15 @@
       "status": "passed"
     },
     {
+      "check": "Mobile reading paragraphs use at least 16px text",
+      "status": "passed"
+    },
+    {
       "check": "Mobile navigation opens, closes on navigation, and closes with Escape",
+      "status": "passed"
+    },
+    {
+      "check": "Tablet menu state resets when resizing into desktop navigation",
       "status": "passed"
     },
     {
@@ -101,5 +133,5 @@
   "consoleErrors": [],
   "note": "Synthetic inputs only. No external page opened or message sent.",
   "status": "passed",
-  "completedAt": "2026-10-13T23:02:01.999Z"
+  "completedAt": "2026-10-15T19:02:47.568Z"
 }

@@ -3,7 +3,7 @@ import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl }
 const copy = {
   "es": {
     "pageTitle": "Pro Carga — Transporte y logística en República Dominicana",
-    "description": "Aeropuertos, transporte turístico, Pro Luxury, flete y mensajería en República Dominicana. Solicita tu cotización con Pro Carga.",
+    "description": "Aeropuertos, transporte turístico, Pro Luxury, flete y mudanzas en República Dominicana. Solicita tu cotización con Pro Carga.",
     "scrollExplore": "DESCUBRE PRO CARGA",
     "skip": "Saltar al contenido",
     "homeLabel": "Pro Carga, inicio",
@@ -19,7 +19,7 @@ const copy = {
     "heroLine2": "A tu manera.",
     "heroDescription": "Aeropuertos, turismo, transporte ejecutivo, eventos y soluciones para tu carga en República Dominicana.",
     "heroCta": "Cotizar mi servicio",
-    "heroSecondary": "Ver servicios",
+    "heroSecondary": "Conocer la flota",
     "heroBase": "SANTO DOMINGO",
     "heroMeta": "PERSONAS · DESTINOS · CARGA",
     "quoteEyebrow": "HABLEMOS DE TU PRÓXIMA RUTA",
@@ -90,7 +90,7 @@ const copy = {
     "faq2Question": "¿La solicitud confirma una reserva?",
     "faq2Answer": "No. La web solo prepara una solicitud de cotización. Disponibilidad, vehículo, condiciones y confirmación del servicio se acuerdan directamente con Pro Carga.",
     "faq3Question": "¿También transportan carga y paquetes?",
-    "faq3Answer": "Pro Carga ofrece flete, carga, mudanzas y mensajería. Elige el servicio en el formulario e indica qué necesitas mover, su tamaño y los puntos de recogida y entrega. La ruta y las condiciones se confirman por WhatsApp.",
+    "faq3Answer": "Pro Carga ofrece flete, carga y mudanzas. Elige el servicio en el formulario e indica qué necesitas mover, su tamaño y los puntos de recogida y entrega. La ruta y las condiciones se confirman por WhatsApp.",
     "faq4Question": "¿Qué pasa con los datos del formulario?",
     "faq4Answer": "Primero revisas tu mensaje. La solicitud llega a Pro Carga cuando la envías en WhatsApp.",
     "contactEyebrow": "PRO CARGA · SANTO DOMINGO",
@@ -103,7 +103,6 @@ const copy = {
     "brandPromise": "Tu necesidad. Nuestro compromiso.",
     "serviceTourism": "Transporte turístico",
     "serviceCargo": "Flete, carga y mudanzas",
-    "serviceCourier": "Mensajería y envíos",
     "serviceCta": "Solicitar cotización",
     "tourismTitle": "Transporte turístico",
     "tourismDescription": "Recorridos y traslados para descubrir República Dominicana, en pareja, en familia o en grupo. Cuéntanos tu destino.",
@@ -111,17 +110,14 @@ const copy = {
     "cargoTitle": "Flete, carga y mudanzas",
     "cargoDescription": "Traslado de mercancías, bultos y mudanzas. Consulta tu ruta e indica el volumen y las características de la carga.",
     "cargoLink": "Cotizar flete, carga o mudanza",
-    "courierTitle": "Mensajería y envíos",
-    "courierDescription": "Documentos, paquetes y envíos locales. Comparte los puntos de recogida y entrega para coordinar tu solicitud.",
-    "courierLink": "Cotizar mensajería o envío",
     "luxuryEyebrow": "PRO LUXURY · UNA EXPERIENCIA DIFERENTE",
     "luxuryLine1": "El detalle",
     "luxuryLine2": "hace el viaje.",
-    "luxuryIntro": "Traslados ejecutivos, chofer privado y ocasiones especiales. Cuéntanos tu agenda y consulta las opciones de Pro Luxury.",
+    "luxuryIntro": "Chevrolet Suburban y Cadillac para tus traslados ejecutivos, chofer privado y ocasiones especiales. El viaje empieza desde que subes.",
     "luxuryFeature1": "Corporativo & VIP",
     "luxuryFeature2": "Chofer privado",
     "luxuryFeature3": "Eventos y bodas",
-    "luxuryCta": "Consultar Pro Luxury",
+    "luxuryCta": "Descubrir la flota",
     "luxuryImageLabel": "El viaje también cuenta.",
     "hotelAlt": "Vehículo frente a un hotel",
     "routeAlt": "Trayecto urbano junto al mar",
@@ -133,7 +129,8 @@ const copy = {
       "date": "Elige hoy o una fecha futura válida.",
       "passengers": "Indica un número entero de pasajeros, mínimo 1.",
       "service": "Elige un servicio de la lista.",
-      "notes": "Usa hasta 1200 caracteres."
+      "notes": "Usa hasta 1200 caracteres.",
+      "vehicle": "Elige un vehículo de la lista."
     },
     "navLuxury": "Pro Luxury",
     "shortcutsLabel": "Elige un servicio para cotizar",
@@ -142,20 +139,65 @@ const copy = {
     "shortcutCorporate": "Corporativo / VIP",
     "shortcutEvents": "Eventos y bodas",
     "shortcutCargo": "Carga y mudanzas",
-    "shortcutCourier": "Mensajería",
     "quoteFlowRoute": "Tu ruta",
     "quoteFlowReview": "Revisa tu solicitud",
     "quoteFlowSend": "Conversa por WhatsApp",
-    "interiorAlt": "Interior de un vehículo con asientos de cuero en tonos cálidos",
+    "interiorAlt": "Interior de la Suburban visto desde atrás hacia adelante, con el techo panorámico descubierto",
     "destinationGroupLabel": "Destinos que puedes consultar",
     "faq5Question": "¿Qué datos incluyo para un traslado de aeropuerto?",
     "faq5Answer": "Comparte el aeropuerto, tu destino, fecha y número de pasajeros. En los detalles puedes añadir el número de vuelo, horario y equipaje para que Pro Carga prepare la cotización.",
     "faq6Question": "¿Puedo consultar otro destino?",
-    "faq6Answer": "Sí. Escribe cualquier destino en el formulario aunque no aparezca entre las sugerencias. Pro Carga confirmará la ruta, disponibilidad y condiciones directamente contigo."
+    "faq6Answer": "Sí. Escribe cualquier destino en el formulario aunque no aparezca entre las sugerencias. Pro Carga confirmará la ruta, disponibilidad y condiciones directamente contigo.",
+    "navFleet": "La flota",
+    "panoramaOpen": "Ampliar interior panorámico de la Suburban",
+    "panoramaCaption": "El cielo también viaja contigo.",
+    "fleetEyebrow": "CONOCE TU PRÓXIMO TRASLADO",
+    "fleetLine1": "Elige cómo",
+    "fleetLine2": "quieres viajar.",
+    "fleetIntro": "Un viaje en familia, una llegada especial o todo el grupo junto. Explora los vehículos y encuentra tu opción.",
+    "galleryViews": "Vistas del vehículo",
+    "viewExterior": "Exterior",
+    "viewInterior": "Interior",
+    "suburbanOpen": "Ampliar foto de la Chevrolet Suburban",
+    "suburbanAlt": "Chevrolet Suburban negra, vista exterior frontal",
+    "suburbanDescription": "Un espacio para disfrutar el trayecto, con interior de cuero y techo panorámico. Para aeropuertos, agendas ejecutivas y ocasiones especiales.",
+    "suburbanCta": "Cotizar esta Suburban",
+    "toyotaFrontOpen": "Ampliar vista frontal del minibús Toyota",
+    "toyotaSideOpen": "Ampliar vista lateral del minibús Toyota",
+    "toyotaFrontAlt": "Minibús Toyota blanco, vista frontal",
+    "toyotaSideAlt": "Minibús Toyota blanco, vista lateral con la puerta abierta",
+    "toyotaInteriorAngleAlt": "Interior del minibús Toyota, vista lateral de los asientos y el pasillo",
+    "toyotaInteriorRowsAlt": "Interior del minibús Toyota, filas de asientos vistas desde adelante",
+    "toyotaCapacity": "19 pasajeros",
+    "groupTravel": "VIAJES EN GRUPO",
+    "toyotaTitle": "Minibús Toyota",
+    "toyotaDescription": "El plan se disfruta más cuando van todos juntos. Una opción de 19 pasajeros para turismo, traslados de aeropuerto y eventos.",
+    "toyotaCta": "Cotizar para mi grupo",
+    "cadillacTitle": "Una llegada con carácter.",
+    "cadillacDescription": "Descubre también las opciones Cadillac para tus traslados ejecutivos y ocasiones especiales.",
+    "cadillacCta": "Consultar Cadillac",
+    "fleetNote": "Cuéntanos tu ruta, pasajeros y equipaje. Confirmamos contigo el vehículo y la disponibilidad al cotizar.",
+    "filmEyebrow": "UNA MIRADA MÁS DE CERCA",
+    "filmTitle": "La experiencia, en movimiento.",
+    "filmIntro": "Dale play y conoce los detalles de la Suburban.",
+    "cabinVideo": "Video del interior y techo panorámico de la Suburban, sin audio",
+    "arrivalVideo": "Video de la Suburban en la entrada de un hotel, sin audio",
+    "walkaroundVideo": "Video del exterior de la Suburban junto al mar, sin audio",
+    "videoFallback": "Tu navegador no admite este video.",
+    "cabinFilm": "El interior y su techo panorámico",
+    "arrivalFilm": "Lista para tu próxima llegada",
+    "walkaroundFilm": "Una vista desde afuera",
+    "photoDialog": "Foto del vehículo",
+    "photoDetail": "Conoce cada detalle",
+    "closePhoto": "Cerrar",
+    "vehicleLabel": "Vehículo de preferencia",
+    "vehicleEmpty": "Ayúdenme a elegir",
+    "toyotaOption": "Minibús Toyota · 19 pasajeros",
+    "photoOpen": "Ampliar foto del vehículo"
   },
   "en": {
     "pageTitle": "Pro Carga — Transportation and logistics in the Dominican Republic",
-    "description": "Airport transfers, tourism transportation, Pro Luxury, freight and courier services in the Dominican Republic. Request a quote from Pro Carga.",
+    "description": "Airport transfers, tourism transportation, Pro Luxury, freight and moving in the Dominican Republic. Request a quote from Pro Carga.",
     "scrollExplore": "DISCOVER PRO CARGA",
     "skip": "Skip to content",
     "homeLabel": "Pro Carga, home",
@@ -171,7 +213,7 @@ const copy = {
     "heroLine2": "Your way.",
     "heroDescription": "Airport transfers, tourism, executive transport, events and cargo services in the Dominican Republic.",
     "heroCta": "Get a quote",
-    "heroSecondary": "Explore services",
+    "heroSecondary": "Explore the fleet",
     "heroBase": "SANTO DOMINGO",
     "heroMeta": "PEOPLE · DESTINATIONS · CARGO",
     "quoteEyebrow": "LET’S PLAN YOUR NEXT ROUTE",
@@ -242,7 +284,7 @@ const copy = {
     "faq2Question": "Does the request confirm a booking?",
     "faq2Answer": "No. The website only prepares a quote request. Availability, vehicle, terms and service confirmation are agreed directly with Pro Carga.",
     "faq3Question": "Do you also transport cargo and parcels?",
-    "faq3Answer": "Pro Carga offers freight, cargo, moving and courier services. Select your service and describe what you need to move, its size and the pick-up and delivery points. The route and terms are confirmed on WhatsApp.",
+    "faq3Answer": "Pro Carga offers freight, cargo and moving. Select your service and describe what you need to move, its size and the pick-up and delivery points. The route and terms are confirmed on WhatsApp.",
     "faq4Question": "What happens to my form data?",
     "faq4Answer": "You review your message first. Pro Carga receives your request when you send it in WhatsApp.",
     "contactEyebrow": "PRO CARGA · SANTO DOMINGO",
@@ -255,7 +297,6 @@ const copy = {
     "brandPromise": "Your needs. Our commitment.",
     "serviceTourism": "Tourism transportation",
     "serviceCargo": "Freight, cargo and moving",
-    "serviceCourier": "Courier and deliveries",
     "serviceCta": "Request a quote",
     "tourismTitle": "Tourism transportation",
     "tourismDescription": "Trips and transfers to explore the Dominican Republic as a couple, family or group. Tell us about your destination.",
@@ -263,17 +304,14 @@ const copy = {
     "cargoTitle": "Freight, cargo & moving",
     "cargoDescription": "Transport for goods, packages and moving. Share your route, cargo volume and handling needs.",
     "cargoLink": "Request a freight or moving quote",
-    "courierTitle": "Courier & deliveries",
-    "courierDescription": "Documents, parcels and local deliveries. Share your pick-up and drop-off points to plan your request.",
-    "courierLink": "Request a courier or delivery quote",
     "luxuryEyebrow": "PRO LUXURY · A DIFFERENT EXPERIENCE",
     "luxuryLine1": "The details",
     "luxuryLine2": "make the journey.",
-    "luxuryIntro": "Executive transfers, a private chauffeur and special occasions. Share your schedule and explore the Pro Luxury options.",
+    "luxuryIntro": "Chevrolet Suburban and Cadillac for executive transfers, a private chauffeur and special occasions. The experience begins as soon as you step inside.",
     "luxuryFeature1": "Corporate & VIP",
     "luxuryFeature2": "Private chauffeur",
     "luxuryFeature3": "Events & weddings",
-    "luxuryCta": "Explore Pro Luxury",
+    "luxuryCta": "Discover the fleet",
     "luxuryImageLabel": "The journey matters, too.",
     "hotelAlt": "Vehicle outside a hotel",
     "routeAlt": "A coastal city route",
@@ -285,7 +323,8 @@ const copy = {
       "date": "Choose today or a valid future date.",
       "passengers": "Enter a whole number of passengers, at least 1.",
       "service": "Choose a service from the list.",
-      "notes": "Use up to 1200 characters."
+      "notes": "Use up to 1200 characters.",
+      "vehicle": "Choose a vehicle from the list."
     },
     "navLuxury": "Pro Luxury",
     "shortcutsLabel": "Choose a service to request a quote",
@@ -294,25 +333,118 @@ const copy = {
     "shortcutCorporate": "Corporate / VIP",
     "shortcutEvents": "Events and weddings",
     "shortcutCargo": "Cargo and moving",
-    "shortcutCourier": "Courier",
     "quoteFlowRoute": "Your route",
     "quoteFlowReview": "Review your request",
     "quoteFlowSend": "Talk on WhatsApp",
-    "interiorAlt": "Vehicle interior with leather seats in warm tones",
+    "interiorAlt": "Suburban interior viewed from back to front, with the panoramic roof uncovered",
     "destinationGroupLabel": "Destinations you can ask about",
     "faq5Question": "What details should I include for an airport transfer?",
     "faq5Answer": "Share the airport, destination, date and number of passengers. You can add your flight number, timing and luggage in the details so Pro Carga can prepare a quote.",
     "faq6Question": "Can I ask about another destination?",
-    "faq6Answer": "Yes. Enter any destination in the form, even if it is not listed in the suggestions. Pro Carga will confirm the route, availability and terms directly with you."
+    "faq6Answer": "Yes. Enter any destination in the form, even if it is not listed in the suggestions. Pro Carga will confirm the route, availability and terms directly with you.",
+    "navFleet": "Our fleet",
+    "panoramaOpen": "Enlarge the Suburban panoramic interior",
+    "panoramaCaption": "Take a little sky along for the ride.",
+    "fleetEyebrow": "MEET YOUR NEXT RIDE",
+    "fleetLine1": "Choose how",
+    "fleetLine2": "you want to travel.",
+    "fleetIntro": "A family trip, a special arrival or the whole group together. Explore the vehicles and find your fit.",
+    "galleryViews": "Vehicle views",
+    "viewExterior": "Exterior",
+    "viewInterior": "Interior",
+    "suburbanOpen": "Enlarge the Chevrolet Suburban photo",
+    "suburbanAlt": "Black Chevrolet Suburban, front exterior view",
+    "suburbanDescription": "Room to enjoy the journey, with a leather interior and panoramic roof. For airports, executive schedules and special occasions.",
+    "suburbanCta": "Request this Suburban",
+    "toyotaFrontOpen": "Enlarge the Toyota minibus front view",
+    "toyotaSideOpen": "Enlarge the Toyota minibus side view",
+    "toyotaFrontAlt": "White Toyota minibus, front view",
+    "toyotaSideAlt": "White Toyota minibus, side view with the door open",
+    "toyotaInteriorAngleAlt": "Toyota minibus interior, side view of the seats and aisle",
+    "toyotaInteriorRowsAlt": "Toyota minibus interior, seat rows viewed from the front",
+    "toyotaCapacity": "19 passengers",
+    "groupTravel": "GROUP TRAVEL",
+    "toyotaTitle": "Toyota minibus",
+    "toyotaDescription": "Enjoy the plan with everyone together. A 19-passenger option for tourism, airport transfers and events.",
+    "toyotaCta": "Request a group quote",
+    "cadillacTitle": "Make an entrance.",
+    "cadillacDescription": "Explore the Cadillac options for your executive transfers and special occasions.",
+    "cadillacCta": "Ask about Cadillac",
+    "fleetNote": "Tell us your route, passenger count and luggage. We confirm your vehicle and availability when preparing your quote.",
+    "filmEyebrow": "TAKE A CLOSER LOOK",
+    "filmTitle": "The experience, in motion.",
+    "filmIntro": "Press play to explore the Suburban in more detail.",
+    "cabinVideo": "Silent video of the Suburban interior and panoramic roof",
+    "arrivalVideo": "Silent video of the Suburban at a hotel entrance",
+    "walkaroundVideo": "Silent video of the Suburban exterior by the sea",
+    "videoFallback": "Your browser does not support this video.",
+    "cabinFilm": "Inside, under the panoramic roof",
+    "arrivalFilm": "Ready for your next arrival",
+    "walkaroundFilm": "A closer look outside",
+    "photoDialog": "Vehicle photo",
+    "photoDetail": "Explore every detail",
+    "closePhoto": "Close",
+    "vehicleLabel": "Preferred vehicle",
+    "vehicleEmpty": "Help me choose",
+    "toyotaOption": "Toyota minibus · 19 passengers",
+    "photoOpen": "Enlarge vehicle photo"
   }
 };
 
+const galleryMedia = {
+  suburban: {
+    exterior: [['suburban-front', 'suburbanAlt', 960, 480]],
+    interior: [['suburban-panorama', 'interiorAlt', 1069, 640]],
+  },
+  toyota: {
+    exterior: [['toyota-hiace-front', 'toyotaFrontAlt'], ['toyota-hiace-side', 'toyotaSideAlt']],
+    interior: [['toyota-hiace-interior-angle', 'toyotaInteriorAngleAlt'], ['toyota-hiace-interior-rows', 'toyotaInteriorRowsAlt']],
+  },
+};
+
+function renderGallery(gallery, view = gallery.dataset.view || 'exterior') {
+  gallery.dataset.view = view;
+  const photos = galleryMedia[gallery.dataset.fleetGallery][view];
+  gallery.querySelectorAll('.fleet-photo').forEach((button, index) => {
+    const [file, alt, width = 1170, smallWidth = 640] = photos[index];
+    const img = button.querySelector('img');
+    img.src = `./assets/fleet/${file}.webp`;
+    img.srcset = `./assets/fleet/${file}-640.webp ${smallWidth}w, ./assets/fleet/${file}.webp ${width}w`;
+    img.sizes = gallery.dataset.fleetGallery === 'toyota' ? '(max-width: 600px) calc((100vw - 43px)/2), (max-width: 850px) 25vw, 320px' : '(max-width: 600px) calc(100vw - 40px), (max-width: 850px) 50vw, 640px';
+    img.dataset.i18nAlt = alt;
+    img.alt = copy[language][alt];
+    button.classList.toggle('suburban-photo', file === 'suburban-front');
+    button.classList.toggle('gallery-cabin', file === 'suburban-panorama');
+    button.removeAttribute('data-i18n-aria');
+    button.setAttribute('aria-label', `${copy[language].photoOpen}: ${img.alt}`);
+  });
+  gallery.querySelectorAll('[data-gallery-view]').forEach(button => {
+    button.setAttribute('aria-pressed', String(button.dataset.galleryView === view));
+    const label = copy[language][button.dataset.galleryView === 'interior' ? 'viewInterior' : 'viewExterior'];
+    button.textContent = gallery.dataset.fleetGallery === 'toyota' ? `${label} · 2` : label;
+  });
+}
+
+function refreshGalleryLanguage() {
+  document.querySelectorAll('[data-fleet-gallery]').forEach(gallery => renderGallery(gallery));
+  const dialog = document.querySelector('#media-dialog');
+  if (dialog.open && dialog.dataset.altKey) {
+    const caption = copy[language][dialog.dataset.altKey];
+    document.querySelector('#media-full-image').alt = caption;
+    document.querySelector('#media-caption').textContent = caption;
+  }
+}
+
 const form = document.querySelector('#quote-form');
 function updateServiceFields() {
-  const delivery = ['cargo','courier'].includes(document.querySelector('#service').value);
+  const delivery = document.querySelector('#service').value === 'cargo';
   const passengers = document.querySelector('#passengers');
   passengers.closest('.field').hidden = delivery;
   passengers.required = !delivery;
+  const vehicle = document.querySelector('#vehicle');
+  vehicle.closest('.field').hidden = delivery;
+  vehicle.disabled = delivery;
+  if (delivery) delete errors.vehicle;
   document.querySelector('.form-grid').classList.toggle('is-delivery', delivery);
   if (delivery) delete errors.passengers;
 }
@@ -325,7 +457,7 @@ let errors = {};
 let preparedQuote = null;
 
 function showErrors() {
-  for (const id of ['origin', 'destination', 'date', 'passengers', 'service', 'notes']) {
+  for (const id of ['origin', 'destination', 'date', 'passengers', 'service', 'vehicle', 'notes']) {
     document.querySelector(`#${id}-error`).textContent = errors[id] ? copy[language].errors[errors[id]] : '';
     const input = document.getElementById(id);
     if (errors[id]) input.setAttribute('aria-invalid', 'true');
@@ -354,6 +486,7 @@ function setLanguage(next) {
   document.querySelectorAll('[data-whatsapp-contact]').forEach(link => { link.href = contactUrl(language); });
   menu.setAttribute('aria-label', texts[menu.getAttribute('aria-expanded') === 'true' ? 'menuClose' : 'menuOpen']);
   updateServiceFields();
+  refreshGalleryLanguage();
   showErrors();
   updateReview();
   const url = new URL(location.href);
@@ -378,7 +511,7 @@ menu.addEventListener('click', () => {
 });
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { closeMenu(); menu.focus(); } });
 navigation.querySelectorAll('a').forEach(link => { link.addEventListener('click', closeMenu); });
-window.matchMedia('(min-width: 851px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+window.matchMedia('(min-width: 1101px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
 document.querySelectorAll('[data-destination]').forEach(link => {
   link.addEventListener('click', () => {
     form.hidden = false;
@@ -400,6 +533,8 @@ document.querySelectorAll('[data-service]').forEach(link => {
     document.querySelector('#service').value = link.dataset.service;
     updateServiceFields();
     showErrors();
+    if (link.dataset.vehicle) document.querySelector('#vehicle').value = link.dataset.vehicle;
+    delete errors.vehicle;
     document.querySelector('.trip-details').open = true;
   });
 });
@@ -440,3 +575,39 @@ const header = document.querySelector(".site-header");
 function updateHeader(){ header.classList.toggle("is-scrolled",window.scrollY>70); }
 window.addEventListener("scroll",updateHeader,{passive:true});
 updateHeader();
+
+document.querySelectorAll('[data-fleet-gallery]').forEach(gallery => {
+  gallery.querySelectorAll('[data-gallery-view]').forEach(button => {
+    button.addEventListener('click', () => renderGallery(gallery, button.dataset.galleryView));
+  });
+});
+
+const mediaDialog = document.querySelector('#media-dialog');
+let activePhoto;
+document.querySelectorAll('.fleet-photo').forEach(button => {
+  button.addEventListener('click', () => {
+    activePhoto = button;
+    const photo = button.querySelector('img');
+    const full = document.querySelector('#media-full-image');
+    full.src = photo.src;
+    full.alt = photo.alt;
+    mediaDialog.dataset.altKey = photo.dataset.i18nAlt;
+    document.querySelector('#media-caption').textContent = photo.alt;
+    mediaDialog.showModal();
+    document.body.classList.add('photo-open');
+  });
+});
+document.querySelector('#media-close').addEventListener('click', () => mediaDialog.close());
+mediaDialog.addEventListener('click', event => { if (event.target === mediaDialog) mediaDialog.close(); });
+mediaDialog.addEventListener('close', () => {
+  document.body.classList.remove('photo-open');
+  activePhoto?.focus({ preventScroll: true });
+});
+
+const films = document.querySelectorAll('.film-card video');
+films.forEach(film => {
+  film.addEventListener('play', () => films.forEach(other => { if (other !== film) other.pause(); }));
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) films.forEach(film => film.pause());
+});

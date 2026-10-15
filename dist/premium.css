@@ -56,3 +56,276 @@
 @media(max-width:850px){.hero-copy{max-width:80%}.hero-copy h1{font-size:clamp(47px,6.7vw,59px)}.service-shortcuts{grid-template-columns:repeat(3,1fr);gap:6px 0;padding:13px 0}.service-shortcuts a{padding:7px 14px;font-size:11px}.service-shortcuts a:nth-child(4){border-left:0;padding-left:0}.luxury-grid{grid-template-columns:1fr;gap:35px}.luxury-copy>p:not(.eyebrow){max-width:540px}.luxury-visuals{grid-template-columns:1.15fr 1fr;max-width:700px}.luxury-interior-image,.luxury-visuals .luxury-images{height:530px}.luxury-visuals .luxury-route-image{display:block}.luxury-visuals .luxury-image-label{width:88%}}
 @media(max-width:600px){.hero-scene{min-height:665px}.hero-photo{top:auto;bottom:0;width:100%;height:390px;object-position:79% 57%;opacity:1}.hero-scene:after{background:linear-gradient(180deg,#042a42 0%,#042a42 37%,#042a42d9 52%,#042a4257 72%,#042a4224 88%,#042a4270 100%)}.hero-grid{padding:42px 0 250px}.hero-copy{max-width:100%;width:100%}.hero-copy h1{font-size:clamp(36px,9.2vw,52px);line-height:1.11}.hero-description{font-size:12px;max-width:340px}.hero-caption{bottom:22px}.service-shortcuts{grid-template-columns:repeat(2,1fr);padding:10px 0;gap:0}.service-shortcuts a{padding:11px 12px;font-size:11px;min-height:45px}.service-shortcuts a:nth-child(odd){border-left:0;padding-left:0}.service-shortcuts a:nth-child(even){border-left:1px solid #ffffff24;padding-left:14px}.quote-wrap{padding-top:20px}.quote-flow{gap:10px;justify-content:space-between;padding-bottom:16px;margin-bottom:18px}.quote-flow li{font-size:8px;gap:6px}.quote-flow li>span:first-child{width:20px;height:20px;font-size:7px}.luxury-visuals{gap:12px;grid-template-columns:1.1fr 1fr}.luxury-interior-image,.luxury-visuals .luxury-images{height:380px}.luxury-visuals .luxury-images{padding-bottom:40px;gap:12px}.luxury-visuals .luxury-image-label{width:95%;padding:13px 12px}.luxury-visuals .luxury-image-label strong{font-size:13px}.luxury-visuals .luxury-image-label span{font-size:7px}.destination-tags a{font-size:11px}.quote-flow li:last-child{flex-basis:100%;margin-top:2px}}
 @media(max-width:380px){.hero-copy h1{font-size:34px}.hero-grid{padding-bottom:238px}.luxury-interior-image,.luxury-visuals .luxury-images{height:350px}}
+
+/* Client fleet update. Reading sizes stay comfortable at every breakpoint. */
+:root{--muted:#526b7a}
+body{font-size:17px;line-height:1.75}
+.eyebrow,.hero-copy .eyebrow,.quote-heading .eyebrow{font-size:12px;line-height:1.6;letter-spacing:.12em}
+.hero-description,.section-heading>p,.service-card p,.luxury-copy>p:not(.eyebrow),.destination-copy>p:not(.eyebrow):not(.destination-note),.steps p,.faq-list p,.review-heading p{font-size:16px;line-height:1.8}
+.hero-description{max-width:460px;color:#deedf4}
+.hero-meta,.hero-caption,.hero-caption strong{font-size:11px}
+.hero-copy .eyebrow{max-width:490px}
+.hero-grid{padding-top:72px;padding-bottom:78px}
+.hero-copy h1{font-size:clamp(48px,4.7vw,70px)}
+.button,.form-bottom .button,.contact-grid .button{font-size:15px;min-height:52px;padding:14px 22px}
+.text-link,.hero-actions .text-link,.destination-copy .text-link{font-size:15px;min-height:44px}
+nav{font-size:14px;gap:22px}
+.header-inner{gap:20px}
+.header-quote{font-size:14px;gap:16px;padding:12px 18px;min-height:46px}
+.language-switch button{font-size:13px;min-height:44px;min-width:34px}
+.header-actions{gap:14px}
+.brand-name small{font-size:9px}
+.service-shortcuts{grid-template-columns:repeat(5,1fr)}
+.service-shortcuts a{font-size:14px;min-height:52px;padding:0 16px;gap:10px}
+.service-shortcuts a>small{font-size:11px}
+.quote-panel{padding:36px 38px}
+.quote-heading>p{font-size:15px;max-width:370px}
+.quote-heading h2{font-size:34px}
+.quote-flow{gap:32px}
+.quote-flow li{font-size:13px}
+.quote-flow li>span:first-child{font-size:11px;width:28px;height:28px}
+.required-note,.field-hint,.field-error,.form-bottom>p,.noscript-note{font-size:13px;line-height:1.65}
+.field label{font-size:14px;margin-bottom:8px}
+.field input,.field select,.field textarea{font-size:16px;min-height:52px;padding:12px}
+.form-grid{gap:18px}
+.service-field{max-width:380px}
+.vehicle-field{max-width:380px;margin-top:18px}
+.trip-details summary{font-size:14px;min-height:44px;line-height:1.8}
+.form-bottom>p{max-width:580px}
+.request-review pre{font-size:16px;line-height:1.8;margin:24px 0}
+.service-list{grid-template-columns:repeat(6,minmax(0,1fr));gap:22px}
+.service-card{grid-column:span 2;padding:30px}
+.service-card:nth-last-child(-n+2){grid-column:span 3}
+.service-card h3{font-size:25px;line-height:1.25}
+.service-card>a{font-size:15px;min-height:52px}
+.service-number{font-size:13px}
+.luxury-grid{grid-template-columns:.85fr 1.15fr;gap:72px}
+.luxury-copy>p:not(.eyebrow){max-width:420px;margin:26px 0}
+.luxury-features{gap:10px;margin-bottom:32px}
+.luxury-features li{font-size:13px;padding:8px 12px}
+.panorama-feature{margin:0;min-width:0;position:relative}
+.fleet-photo{position:relative;display:block;width:100%;height:100%;padding:0;overflow:hidden;background:#e5edf1;color:var(--deep)}
+.fleet-photo img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.fleet-photo:hover img{transform:scale(1.035)}
+.fleet-photo:focus-visible{outline-offset:-5px;z-index:2}
+.panorama-photo{aspect-ratio:1.126;max-height:560px;border-radius:12px}
+.panorama-photo img{object-position:center}
+.photo-expand{position:absolute;right:15px;top:15px;display:grid;place-items:center;width:40px;height:40px;border:1px solid #ffffff80;border-radius:50%;background:#042a42b8;color:white;font-size:23px;pointer-events:none}
+.panorama-feature figcaption{position:relative;margin:-25px 24px 0 0;background:var(--navy);color:white;padding:22px 28px;border-radius:0 8px 8px 8px;max-width:90%;box-shadow:0 10px 25px #042a4212}
+.panorama-feature figcaption>span{font-size:11px;letter-spacing:.13em;color:#9adfea;display:block;margin-bottom:5px}
+.panorama-feature figcaption strong{font-size:19px;line-height:1.5;font-weight:600}
+.fleet-section{background:var(--cream);border-top:1px solid var(--line)}
+.fleet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.fleet-card{min-width:0;overflow:hidden;background:white;border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column}
+.fleet-gallery{height:350px;display:grid;min-width:0;overflow:hidden}
+.fleet-gallery-pair{grid-template-columns:1fr 1fr;gap:3px}
+.fleet-gallery .suburban-photo img{object-position:50% 41%;transform:scale(1.4)}
+.fleet-gallery .suburban-photo:hover img{transform:scale(1.43)}
+.fleet-gallery .gallery-cabin img{object-fit:contain;background:#0a2637}
+.fleet-gallery-pair .fleet-photo:first-child img{object-position:50% 48%}
+.fleet-gallery-pair .fleet-photo:nth-child(2) img{object-position:54% center}
+.fleet-gallery-pair .fleet-photo img{object-fit:contain;background:#dfe9e5}
+.fleet-gallery-pair .photo-expand{width:32px;height:32px;right:12px;top:12px;font-size:20px}
+.fleet-card-body{padding:26px 30px 12px;display:flex;flex-direction:column;flex:1}
+.gallery-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.gallery-toolbar button{background:var(--cream);border:1px solid var(--line);border-radius:5px;min-height:44px;padding:8px 15px;font-size:14px;color:var(--muted);font-weight:600}
+.gallery-toolbar button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.gallery-toolbar button:hover{border-color:var(--blue)}
+.capacity-badge{font-size:13px;color:var(--blue);font-weight:700;margin-left:auto;white-space:nowrap}
+.fleet-category{font-size:11px;letter-spacing:.14em;color:var(--blue);font-weight:700;margin-bottom:9px}
+.fleet-card h3{font-size:30px;letter-spacing:-.04em;line-height:1.2;margin-bottom:17px}
+.fleet-card-body>p:not(.fleet-category){color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:24px}
+.fleet-cta{margin-top:auto;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:62px;color:var(--blue);font-size:15px;font-weight:700}
+.fleet-cta>span:last-child{font-size:24px;font-weight:400}
+.cadillac-card{grid-column:1/-1;padding:35px 40px;display:flex;align-items:center;justify-content:space-between;gap:45px;background:var(--navy);color:white;border-radius:12px;position:relative;overflow:hidden}
+.cadillac-card:after{content:'';position:absolute;pointer-events:none;right:27%;top:-130px;width:300px;height:300px;border:1px solid #ffffff10;border-radius:50%}
+.cadillac-card .eyebrow{margin-bottom:12px;color:#8cdbe9}
+.cadillac-card h3{font-size:32px;margin-bottom:14px}
+.cadillac-card p:not(.eyebrow){font-size:16px;max-width:640px;color:#d2e8f1}
+.cadillac-card .button{flex-shrink:0;position:relative;z-index:1}
+.fleet-note{font-size:13px;color:var(--muted);text-align:center;max-width:720px;margin:24px auto 0}
+.film-heading{display:flex;align-items:end;justify-content:space-between;gap:36px;margin:80px 0 30px;padding-top:50px;border-top:1px solid var(--line)}
+.film-heading .eyebrow{margin-bottom:12px}
+.film-heading h3{font-size:35px;line-height:1.2}
+.film-heading>p{font-size:16px;color:var(--muted);max-width:300px}
+.film-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1040px;margin:auto}
+.film-card{min-width:0}
+.film-card video{display:block;width:100%;aspect-ratio:9/16;max-height:490px;object-fit:cover;background:var(--deep);border-radius:10px}
+.film-card figcaption{display:flex;gap:12px;align-items:baseline;padding:17px 1px 0}
+.film-card figcaption span{font-size:12px;color:var(--blue)}
+.film-card figcaption strong{font-size:15px;line-height:1.6;font-weight:600}
+.destination-copy{padding-top:65px;padding-bottom:65px}
+.destination-copy>p:not(.eyebrow):not(.destination-note){color:#d5e6f0}
+.destination-tags{gap:10px}
+.destination-tags a{font-size:15px;min-height:46px;padding:9px 13px}
+.destination-tags a>span[data-i18n]{font-size:inherit}
+.destination-copy .destination-note{font-size:13px;max-width:430px;color:#c4dbe8}
+.destination-coordinate{font-size:11px;line-height:1.6}
+.faq-list summary{font-size:16px;line-height:1.6;min-height:44px}
+.steps li>span{font-size:13px}
+.instagram-link,.footer-brand p{font-size:15px}
+footer{font-size:12px}
+.floating-contact{font-size:14px;min-height:52px}
+.photo-open{overflow:hidden}
+#media-dialog{position:fixed;inset:0;width:min(1100px,calc(100% - 48px));max-width:1100px;max-height:calc(100dvh - 40px);padding:0;border:1px solid #ffffff30;border-radius:12px;background:#082f46;color:white;box-shadow:0 25px 100px #0008}
+#media-dialog::backdrop{background:#021522e8;backdrop-filter:blur(6px)}
+.media-dialog-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 20px;font-size:14px}
+#media-close{display:flex;align-items:center;gap:12px;padding:9px 13px;min-height:44px;color:white;background:#ffffff15;border-radius:5px;font-size:14px}
+#media-close>span:last-child{font-size:24px;line-height:1}
+#media-full-image{display:block;max-width:100%;width:100%;height:min(70dvh,800px);object-fit:contain;background:#051e2d}
+#media-caption{font-size:14px;line-height:1.6;padding:16px 20px;color:#d1e3ed}
+@media(max-width:1100px){
+  .header-inner{height:82px}
+  .site-header nav{display:none;position:absolute;top:82px;left:0;right:0;background:white;padding:16px 32px;border-bottom:1px solid var(--line);font-size:16px}
+  .site-header nav.is-open{display:flex;flex-direction:column;gap:0}
+  .site-header nav a{padding:13px 0;min-height:48px}
+  .menu-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:44px;height:44px;background:none}
+  .menu-toggle span{width:21px;height:2px;background:var(--navy)}
+  .hero-copy{max-width:76%}
+  .hero-copy h1{font-size:54px}
+  .hero-description{font-size:16px;max-width:425px}
+  .luxury-grid{gap:38px}
+  .fleet-gallery{height:310px}
+  .fleet-card-body{padding:22px 22px 10px}
+  .capacity-badge{margin-left:0}
+  .service-shortcuts a{font-size:13px;padding:0 11px}
+  .service-shortcuts a>small{display:none}
+}
+@media(max-width:850px){
+  .hero-copy{max-width:86%}
+  .hero-copy h1{font-size:clamp(45px,6.7vw,59px)}
+  .service-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .service-shortcuts a{font-size:14px;padding:9px 14px}
+  .quote-heading>p{font-size:15px}
+  .service-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .service-card,.service-card:nth-last-child(-n+2){grid-column:auto}
+  .service-card:last-child{grid-column:1/-1}
+  .service-card h3{font-size:24px}
+  .luxury-grid{grid-template-columns:1fr}
+  .luxury-copy>p:not(.eyebrow){max-width:600px}
+  .panorama-feature{max-width:680px}
+  .panorama-photo{max-height:600px}
+  .fleet-grid{gap:20px}
+  .fleet-gallery{height:280px}
+  .fleet-card h3{font-size:27px}
+  .gallery-toolbar button{padding:8px 12px}
+  .cadillac-card{padding:30px;gap:25px}
+  .film-grid{gap:16px}
+  .film-heading{align-items:start;flex-direction:column;gap:16px}
+  .film-heading>p{max-width:none}
+  .destination-grid{grid-template-columns:1fr}
+  .destination-graphic{min-height:360px}
+  .destination-copy{padding:50px 32px}
+  .destination-copy>p:not(.eyebrow):not(.destination-note){max-width:600px}
+  .faq-grid{grid-template-columns:1fr;gap:35px}
+  .contact-grid{grid-template-columns:1fr;gap:30px}
+  .contact-grid>div{justify-self:start}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  .container{width:calc(100% - 40px)}
+  .header-inner{height:78px;gap:6px}
+  .brand-logo{width:49px;height:49px}
+  .brand-name{font-size:14px}
+  .brand-name small{font-size:7px;letter-spacing:.06em}
+  .site-header nav{top:78px;padding:12px 20px}
+  .header-actions{gap:2px}
+  .language-switch button{font-size:13px;min-width:32px;padding:6px}
+  .menu-toggle{width:40px;min-width:40px}
+  .section-pad{padding:64px 0}
+  .eyebrow,.hero-copy .eyebrow,.quote-heading .eyebrow{font-size:11px;letter-spacing:.1em}
+  .hero-copy .eyebrow{align-items:start;gap:8px;max-width:325px;margin-bottom:22px}
+  .status-dot{margin-top:6px}
+  .hero-scene{min-height:750px}
+  .hero-grid{padding:40px 0 280px}
+  .hero-copy{width:100%;max-width:100%}
+  .hero-copy h1{font-size:clamp(34px,9.2vw,51px);line-height:1.12;margin-bottom:22px}
+  .hero-description{font-size:16px;line-height:1.75;max-width:370px}
+  .hero-actions{gap:18px;margin-top:26px}
+  .hero-actions .button{font-size:14px;gap:18px;padding:13px 17px;min-height:50px}
+  .hero-actions .text-link{font-size:14px;gap:10px}
+  .hero-meta{font-size:10px;line-height:1.7;letter-spacing:.1em;margin-top:25px}
+  .hero-photo{height:360px;object-position:79% 57%}
+  .hero-scene:after{background:linear-gradient(180deg,#042a42 0%,#042a42 42%,#042a42e6 55%,#042a4257 76%,#042a4224 90%,#042a4270 100%)}
+  .hero-caption{font-size:10px;bottom:24px}
+  .hero-caption strong{font-size:12px}
+  .service-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px 0}
+  .service-shortcuts a{font-size:14px;min-height:52px;padding:11px 12px}
+  .service-shortcuts a:last-child{grid-column:1/-1;border-top:1px solid #ffffff24}
+  .quote-panel{padding:25px 20px}
+  .quote-heading h2{font-size:29px}
+  .quote-heading>p{font-size:15px;line-height:1.75}
+  .quote-flow{gap:11px;justify-content:start}
+  .quote-flow li{font-size:12px;gap:7px}
+  .quote-flow li>span:first-child{width:26px;height:26px;font-size:10px}
+  .quote-flow li:last-child{flex-basis:100%;margin-top:0}
+  .form-grid,.form-grid.is-delivery{grid-template-columns:1fr;gap:18px}
+  .form-grid>.field{grid-column:1!important}
+  .field label{font-size:14px}
+  .field input,.field select,.field textarea{font-size:16px}
+  .service-field,.vehicle-field{max-width:none}
+  .field-hint,.field-error,.required-note,.form-bottom>p{font-size:13px}
+  .trip-details summary{font-size:14px}
+  .form-bottom{gap:18px}
+  .form-bottom .button{font-size:15px}
+  .review-heading p{font-size:15px}
+  .request-review pre{font-size:16px;padding:18px}
+  .review-actions .button{font-size:14px;gap:14px}
+  .section-heading{gap:22px;margin-bottom:32px}
+  .section-heading>p,.service-card p,.luxury-copy>p:not(.eyebrow),.destination-copy>p:not(.eyebrow):not(.destination-note),.steps p,.faq-list p{font-size:16px;line-height:1.8}
+  .service-list{grid-template-columns:1fr;gap:18px}
+  .service-card,.service-card:last-child,.service-card:nth-last-child(-n+2){grid-column:1}
+  .service-card{padding:25px}
+  .service-card h3{font-size:24px}
+  .service-card>a{font-size:15px}
+  .luxury-grid{gap:30px}
+  .luxury-copy h2{font-size:39px}
+  .panorama-feature figcaption{padding:19px 21px;max-width:94%;margin-right:0}
+  .panorama-feature figcaption strong{font-size:18px}
+  .panorama-feature figcaption>span{font-size:10px}
+  .fleet-grid{grid-template-columns:1fr;gap:24px}
+  .fleet-gallery{height:300px}
+  .fleet-gallery-pair{height:auto;aspect-ratio:2/1}
+  .fleet-card-body{padding:22px 22px 10px}
+  .fleet-card h3{font-size:29px}
+  .gallery-toolbar{gap:7px;margin-bottom:22px}
+  .gallery-toolbar button{font-size:14px;padding:8px 12px}
+  .capacity-badge{font-size:12px;margin-left:auto}
+  .cadillac-card{padding:28px 24px;flex-direction:column;align-items:start;gap:24px}
+  .cadillac-card h3{font-size:30px}
+  .cadillac-card .button{width:100%}
+  .fleet-note{text-align:left;font-size:13px;margin-top:23px}
+  .film-heading{margin-top:55px;padding-top:38px}
+  .film-heading h3{font-size:30px}
+  .film-grid{grid-template-columns:1fr;max-width:380px;gap:32px}
+  .film-card video{max-height:510px;object-fit:contain;aspect-ratio:9/14}
+  .film-card figcaption strong{font-size:15px}
+  .destination-graphic{min-height:0;height:280px}
+  .destination-coordinate{font-size:10px;right:20px;left:20px}
+  .destination-copy{padding:45px 25px 50px}
+  .destination-tags a{font-size:15px}
+  .destination-copy .destination-note{font-size:13px}
+  .faq-list summary{font-size:16px}
+  .faq-list p{margin-right:5px}
+  .steps h3{font-size:23px}
+  .steps li>span{font-size:12px}
+  .contact-grid .button{font-size:14px;padding:14px 18px;gap:18px}
+  .instagram-link,.footer-brand p{font-size:14px}
+  footer{font-size:11px}
+  .floating-contact{bottom:16px;right:16px;min-height:52px;min-width:52px;justify-content:center}
+  #media-dialog{width:calc(100% - 20px);max-height:calc(100dvh - 24px)}
+  .media-dialog-toolbar{padding:10px 12px;font-size:13px;gap:10px}
+  #media-full-image{height:65dvh}
+  #media-caption{font-size:13px;padding:14px}
+}
+@media(max-width:380px){
+  .hero-copy h1{font-size:33px}
+  .hero-actions{gap:13px}
+  .hero-actions .button{font-size:14px}
+  .hero-actions .text-link{font-size:14px}
+  .hero-grid{padding-bottom:260px}
+  .capacity-badge{margin-left:0}
+  .fleet-card-body{padding-left:20px;padding-right:20px}
+  .film-card video{max-height:460px}
+}
+@media(prefers-reduced-motion:reduce){.fleet-photo img{transition:none}}

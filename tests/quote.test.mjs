@@ -49,16 +49,33 @@ test('minimum travel date uses Dominican Republic calendar even for overseas vis
   assert.equal(localDateString(new Date('2026-10-14T05:00:00Z')),'2026-10-14');
 });
 
-test('freight and courier drafts do not require or include passengers', () => {
-  for (const service of ['cargo', 'courier']) {
-    const input = {...valid, service, passengers:'', notes:'2 cajas, 40 × 30 × 20 cm'};
-    assert.equal(validateQuote(input, '2026-10-13').valid, true);
-    for (const language of ['es', 'en']) {
-      const message = quoteMessage(input, language);
-      assert.doesNotMatch(message, /Pasajeros|Passengers/);
-      assert.match(message, /2 cajas/);
-      assert.equal(new URL(whatsappUrl(message)).searchParams.get('text'), message);
-    }
+test('freight drafts do not require or include passengers; removed courier service is rejected', () => {
+  const input = {...valid, service:'cargo', passengers:'', notes:'2 cajas, 40 × 30 × 20 cm'};
+  assert.equal(validateQuote(input, '2026-10-13').valid, true);
+  for (const language of ['es', 'en']) {
+    const message = quoteMessage(input, language);
+    assert.doesNotMatch(message, /Pasajeros|Passengers/);
+    assert.match(message, /2 cajas/);
+    assert.equal(new URL(whatsappUrl(message)).searchParams.get('text'), message);
   }
+  assert.equal(validateQuote({...valid, service:'courier'}, '2026-10-13').errors.service, 'service');
   assert.equal(validateQuote({...valid, service:'tourism', passengers:''}, '2026-10-13').errors.passengers, 'passengers');
+});
+
+test('vehicle preference is optional, validates known fleet and appears in both quote languages', () => {
+  assert.equal(validateQuote(valid, '2026-10-13').valid, true);
+  assert.doesNotMatch(quoteMessage(valid), /Vehículo de preferencia/);
+  assert.equal(validateQuote({...valid, vehicle:'unpublished-model'}, '2026-10-13').errors.vehicle, 'vehicle');
+  for (const [vehicle, esName, enName] of [
+    ['suburban', 'Chevrolet Suburban', 'Chevrolet Suburban'],
+    ['cadillac', 'Cadillac', 'Cadillac'],
+    ['toyota', 'Minibús Toyota · 19 pasajeros', 'Toyota minibus · 19 passengers'],
+  ]) {
+    const input = {...valid, vehicle};
+    assert.equal(validateQuote(input, '2026-10-13').valid, true);
+    assert.ok(quoteMessage(input, 'es').includes(`Vehículo de preferencia: ${esName}`));
+    assert.ok(quoteMessage(input, 'en').includes(`Preferred vehicle: ${enName}`));
+    const message = quoteMessage(input, 'es');
+    assert.equal(new URL(whatsappUrl(message)).searchParams.get('text'), message);
+  }
 });

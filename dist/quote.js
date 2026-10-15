@@ -7,7 +7,12 @@ export const SERVICES = {
   events: { es: 'Eventos y bodas', en: 'Events and weddings' },
   tourism: { es: 'Transporte turístico', en: 'Tourism transportation' },
   cargo: { es: 'Flete, carga y mudanzas', en: 'Freight, cargo and moving' },
-  courier: { es: 'Mensajería y envíos', en: 'Courier and deliveries' },
+};
+
+export const VEHICLES = {
+  suburban: { es: 'Chevrolet Suburban', en: 'Chevrolet Suburban' },
+  cadillac: { es: 'Cadillac', en: 'Cadillac' },
+  toyota: { es: 'Minibús Toyota · 19 pasajeros', en: 'Toyota minibus · 19 passengers' },
 };
 
 export function localDateString(date = new Date()) {
@@ -31,6 +36,7 @@ export function normalizeQuote(input) {
     date: String(input.date ?? ''),
     passengers: String(input.passengers ?? '').trim(),
     service: String(input.service ?? ''),
+    vehicle: String(input.vehicle ?? ''),
     notes: String(input.notes ?? '').trim(),
   };
 }
@@ -42,8 +48,9 @@ export function validateQuote(input, today = localDateString()) {
   if (!quote.destination || quote.destination.length > 120) errors.destination = 'location';
   if (quote.origin && quote.destination && quote.origin.toLocaleLowerCase() === quote.destination.toLocaleLowerCase()) errors.destination = 'same';
   if (!validCalendarDate(quote.date) || quote.date < today) errors.date = 'date';
-  if (!['cargo', 'courier'].includes(quote.service) && (!/^\d+$/.test(quote.passengers) || !Number.isSafeInteger(Number(quote.passengers)) || Number(quote.passengers) < 1)) errors.passengers = 'passengers';
+  if (quote.service !== 'cargo' && (!/^\d+$/.test(quote.passengers) || !Number.isSafeInteger(Number(quote.passengers)) || Number(quote.passengers) < 1)) errors.passengers = 'passengers';
   if (quote.service && !Object.hasOwn(SERVICES, quote.service)) errors.service = 'service';
+  if (quote.vehicle && !Object.hasOwn(VEHICLES, quote.vehicle)) errors.vehicle = 'vehicle';
   if (quote.notes.length > 1200) errors.notes = 'notes';
   return { quote, errors, valid: Object.keys(errors).length === 0 };
 }
@@ -62,8 +69,9 @@ export function quoteMessage(input, language = 'es') {
     '', `Origen: ${q.origin}`, `Destino: ${q.destination}`,
     `Fecha del servicio (DD/MM/AAAA, República Dominicana): ${date}`,
   ];
-  if (!['cargo', 'courier'].includes(q.service)) lines.push(`${lang === 'en' ? 'Passengers' : 'Pasajeros'}: ${Number(q.passengers)}`);
+  if (q.service !== 'cargo') lines.push(`${lang === 'en' ? 'Passengers' : 'Pasajeros'}: ${Number(q.passengers)}`);
   if (q.service) lines.push(`${lang === 'en' ? 'Service' : 'Servicio'}: ${SERVICES[q.service]?.[lang] ?? q.service}`);
+  if (q.vehicle) lines.push(`${lang === 'en' ? 'Preferred vehicle' : 'Vehículo de preferencia'}: ${VEHICLES[q.vehicle]?.[lang] ?? q.vehicle}`);
   if (q.notes) lines.push(`${lang === 'en' ? 'Details' : 'Detalles'}: ${q.notes}`);
   lines.push('', lang === 'en'
     ? 'Please confirm the price, availability and service details. This is a quote request, not a confirmed booking.'
