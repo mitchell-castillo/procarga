@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-15T19:20:46.361Z",
+  "startedAt": "2026-10-15T19:37:27.391Z",
   "browser": [
     {
       "name": "Chromium",
@@ -33,7 +33,11 @@
       "status": "passed"
     },
     {
-      "check": "Three service moments decode in the optional video dialog; closing pauses video and returns focus",
+      "check": "All three videos are visible on the page, decode on play, and pause other clips",
+      "status": "passed"
+    },
+    {
+      "check": "Inline photo carousels retain two luxury and four group images, manual controls and reduced-motion defaults",
       "status": "passed"
     },
     {
@@ -97,11 +101,11 @@
       "status": "passed"
     },
     {
-      "check": "Mobile optional video experience: no horizontal overflow",
+      "check": "Mobile inline videos with local swipe rail: no horizontal overflow",
       "status": "passed"
     },
     {
-      "check": "Mobile service media dialogs fit the viewport and expose the group interior without leaving the service flow",
+      "check": "Mobile photo gallery fits the viewport and exposes both group interior photos",
       "status": "passed"
     },
     {
@@ -137,6 +141,10 @@
       "status": "passed"
     },
     {
+      "check": "Photo carousel advances automatically after six seconds and stays still when paused",
+      "status": "passed"
+    },
+    {
       "check": "No external network requests or browser errors during tests",
       "status": "passed"
     }
@@ -145,5 +153,5 @@
   "consoleErrors": [],
   "note": "Synthetic inputs only. No external page opened or message sent.",
   "status": "passed",
-  "completedAt": "2026-10-15T19:20:52.723Z"
+  "completedAt": "2026-10-15T19:37:47.684Z"
 }

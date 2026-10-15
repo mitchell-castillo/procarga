@@ -60,30 +60,43 @@ try {
   assert.equal(await page.locator('.hero-actions .text-link').getAttribute('href'),'#servicios');
   assert.equal(await page.locator('#vehicle').isVisible(),false);
   passed('Service-led page has no vehicle shopping controls; vehicle preference is optional and collapsed');
-  const film=page.locator('#experience-film');
-  assert.equal(await page.locator('#film-dialog').isVisible(),false);
-  assert.equal(await film.getAttribute('preload'),'none');
-  assert.equal(await film.evaluate(video=>video.controls && video.playsInline && !video.autoplay),true);
-  await page.locator('[data-open-films]').click();
-  assert.equal(await page.locator('#film-dialog').isVisible(),true);
-  for(const key of ['cabin','arrival','walkaround']) {
-    await page.locator(`[data-film="${key}"]`).click();
-    assert.equal(await page.locator(`[data-film="${key}"]`).getAttribute('aria-pressed'),'true');
-    await page.waitForFunction(()=>{
-      const video=document.querySelector('#experience-film');
-      return video.readyState>=1 && video.videoWidth>0 && video.duration>0;
-    },null,{timeout:15000});
+  const films=page.locator('#momentos video');
+  assert.equal(await films.count(),3);
+  assert.equal(await page.locator('#film-dialog').count(),0);
+  for(let index=0;index<3;index++) {
+    const film=films.nth(index);
+    assert.equal(await film.isVisible(),true);
+    assert.equal(await film.getAttribute('preload'),'none');
+    assert.equal(await film.evaluate(video=>video.controls && video.playsInline && !video.autoplay),true);
     const source=await film.locator('source').getAttribute('src');
-    assert.ok(source.endsWith(`suburban-${key}.mp4`));
     const mediaResponse=await context.request.head(new URL(source,base).href);
     assert.equal(mediaResponse.status(),200);
     assert.match(mediaResponse.headers()['content-type'],/^video\/mp4/);
+    await film.locator('..').locator('.video-start').click();
+    await film.evaluate(video=>new Promise((resolve,reject)=>{
+      if(!video.paused && video.readyState>=2) { resolve(); return; }
+      video.addEventListener('playing',()=>resolve(),{once:true});
+      video.addEventListener('error',()=>reject(new Error('Video failed to decode')),{once:true});
+    }));
+    assert.equal(await film.evaluate(video=>!video.paused && video.videoWidth>0),true);
+    if(index>0) assert.equal(await films.nth(index-1).evaluate(video=>video.paused),true);
   }
-  await page.keyboard.press('Escape');
-  assert.equal(await page.locator('#film-dialog').isVisible(),false);
-  assert.equal(await film.evaluate(video=>video.paused),true);
-  assert.equal(await page.locator('[data-open-films]').evaluate(button=>document.activeElement===button),true);
-  passed('Three service moments decode in the optional video dialog; closing pauses video and returns focus');
+  await films.last().evaluate(video=>video.pause());
+  passed('All three videos are visible on the page, decode on play, and pause other clips');
+  assert.equal(await page.locator('[data-carousel]').count(),2);
+  assert.equal(await page.locator('[data-carousel="luxury"] .carousel-slide').count(),2);
+  assert.equal(await page.locator('[data-carousel="group"] .carousel-slide').count(),4);
+  assert.match(await page.locator('[data-carousel="luxury"] .carousel-slide img').first().getAttribute('src'),/panorama-clean/);
+  assert.match(await page.locator('[data-i18n="groupAvailability"]').innerText(),/diciembre.*2026/);
+  for(const name of ['luxury','group']) {
+    const carousel=page.locator(`[data-carousel="${name}"]`);
+    assert.equal(await carousel.locator('[data-carousel-toggle]').getAttribute('aria-pressed'),'true');
+    await carousel.locator('[data-carousel-next]').click();
+    assert.equal(await carousel.locator('.carousel-slide.is-active').getAttribute('data-gallery-index'),'1');
+    await carousel.locator('[data-carousel-go="0"]').click();
+    assert.equal(await carousel.locator('.carousel-slide.is-active').getAttribute('data-gallery-index'),'0');
+  }
+  passed('Inline photo carousels retain two luxury and four group images, manual controls and reduced-motion defaults');
   for(const [collection,expected] of [['luxury',2],['group',4]]) {
     const trigger=page.locator(`[data-open-gallery="${collection}"]`).first();
     await trigger.click();
@@ -215,19 +228,18 @@ try {
   await page.goto(base);
   await page.setViewportSize({width:390,height:844});
   await noOverflow(page,'Mobile ES 390px');
-  const mobileType=await page.locator('.hero-description, .service-card p, .luxury-copy>p:not(.eyebrow):not(.luxury-model-note), .group-copy>p:not(.eyebrow), .steps p, .faq-list p').evaluateAll(elements=>elements.map(element=>({
+  const mobileType=await page.locator('.hero-description, .service-card p, .luxury-copy>p:not(.eyebrow):not(.luxury-model-note), .group-copy>p:not(.eyebrow):not(.group-availability), .steps p, .faq-list p').evaluateAll(elements=>elements.map(element=>({
     text:element.textContent.slice(0,50), size:parseFloat(getComputedStyle(element).fontSize),
   })));
   assert.ok(mobileType.length>0);
   assert.ok(mobileType.every(text=>text.size>=16),`Mobile reading text: ${JSON.stringify(mobileType)}`);
   passed('Mobile reading paragraphs use at least 16px text');
   await page.screenshot({path:resolve(evidencePath,'mobile-es.png'),fullPage:true});
-  await page.locator('[data-open-films]').click();
-  const filmBounds=await page.locator('#film-dialog').boundingBox();
-  assert.ok(filmBounds.width<=390 && filmBounds.height<=844);
-  await noOverflow(page,'Mobile optional video experience');
-  await page.locator('#film-close').click();
-  assert.equal(await page.locator('#experience-film').evaluate(video=>video.paused),true);
+  assert.equal(await page.locator('#momentos video').count(),3);
+  await page.locator('#momentos').scrollIntoViewIfNeeded();
+  const railWidths=await page.locator('.films-rail').evaluate(rail=>({client:rail.clientWidth,scroll:rail.scrollWidth}));
+  assert.ok(railWidths.scroll>railWidths.client);
+  await noOverflow(page,'Mobile inline videos with local swipe rail');
   await page.locator('[data-open-gallery="group"]').first().click();
   await page.locator('.media-thumb[data-photo-index="3"]').click();
   await page.locator('#media-full-image').evaluate(image=>image.decode());
@@ -235,7 +247,7 @@ try {
   const galleryBounds=await page.locator('#media-dialog').boundingBox();
   assert.ok(galleryBounds.width<=390 && galleryBounds.height<=844);
   await page.keyboard.press('Escape');
-  passed('Mobile service media dialogs fit the viewport and expose the group interior without leaving the service flow');
+  passed('Mobile photo gallery fits the viewport and exposes both group interior photos');
   assert.equal(await page.locator('#navigation').isVisible(),false);
   await page.locator('.menu-toggle').click();
   assert.equal(await page.locator('#navigation').isVisible(),true);
@@ -278,6 +290,23 @@ try {
   await page.locator('[data-i18n="faq2Question"]').click();
   assert.match(await page.locator('[data-i18n="faq2Answer"]').innerText(),/No\. The website only prepares a quote request/);
   passed('FAQ expands and makes non-confirmation explicit');
+  const autoPage=await context.newPage();
+  await autoPage.emulateMedia({reducedMotion:'no-preference'});
+  await autoPage.goto(base);
+  const autoCarousel=autoPage.locator('[data-carousel="luxury"]');
+  await autoCarousel.scrollIntoViewIfNeeded();
+  await autoPage.mouse.move(0,0);
+  await autoPage.waitForFunction(()=>document.querySelector('[data-carousel="luxury"]').dataset.activeIndex==='1',null,{timeout:10000});
+  assert.equal(await autoCarousel.locator('.carousel-slide.is-active').getAttribute('data-gallery-index'),'1');
+  await autoCarousel.locator('[data-carousel-toggle]').click();
+  assert.equal(await autoCarousel.locator('[data-carousel-toggle]').getAttribute('aria-pressed'),'true');
+  await autoPage.mouse.move(0,0);
+  await autoPage.locator('h1').evaluate(element=>{element.tabIndex=-1;element.focus({preventScroll:true});});
+  const pausedIndex=await autoCarousel.getAttribute('data-active-index');
+  await autoPage.waitForTimeout(6800);
+  assert.equal(await autoCarousel.getAttribute('data-active-index'),pausedIndex);
+  await autoPage.close();
+  passed('Photo carousel advances automatically after six seconds and stays still when paused');
   assert.deepEqual(report.externalRequests,[]);
   assert.deepEqual(report.consoleErrors,[]);
   passed('No external network requests or browser errors during tests');

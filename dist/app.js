@@ -1,4 +1,5 @@
-import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js?v=20261015-journey';
+import { mountCarousels } from './carousel.js?v=20261015-media';
+import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js?v=20261015-media';
 
 const copy = {
   "es": {
@@ -165,7 +166,7 @@ const copy = {
     "closePhoto": "Cerrar",
     "vehicleLabel": "¿Tienes preferencia de vehículo? (opcional)",
     "vehicleEmpty": "Prefiero que me orienten",
-    "toyotaOption": "Minibús Toyota · 19 pasajeros",
+    "toyotaOption": "Minibús Toyota · 19 pasajeros (previsto diciembre 2026)",
     "navDestinations": "Destinos",
     "luxuryModels": "Opciones Chevrolet Suburban y Cadillac. Consulta disponibilidad al coordinar tu servicio.",
     "luxuryPoint1": "Un traslado que sigue tu agenda",
@@ -173,7 +174,7 @@ const copy = {
     "luxuryPoint2": "Un espacio para disfrutar el camino",
     "luxuryPoint2Body": "Conoce el ambiente a bordo antes de tu próximo viaje.",
     "panoramaEyebrow": "UN MOMENTO PARA TI",
-    "watchExperience": "Un vistazo a tu traslado",
+    "watchExperience": "Ver los videos",
     "seeMoments": "Ver más momentos",
     "groupGalleryOpen": "Ver el espacio para tu grupo",
     "groupCaption": "La familia. Los amigos. Todo el grupo.",
@@ -182,7 +183,7 @@ const copy = {
     "groupLine2": "es ir juntos.",
     "groupIntro": "Del aeropuerto al hotel, de paseo por la isla o camino a una celebración. Organicemos un traslado para compartir el viaje desde el primer momento.",
     "groupCapacity": "Minibús Toyota · 19 pasajeros",
-    "groupCapacityBody": "Cuéntanos cuántos viajan y qué equipaje llevan para coordinar la opción adecuada.",
+    "groupCapacityBody": "El minibús está previsto para diciembre de 2026. Cuéntanos la fecha, cuántos viajan y qué equipaje llevan para consultar las opciones disponibles.",
     "groupCta": "Organizar nuestro traslado",
     "groupGalleryCta": "Conoce el espacio para tu grupo",
     "quoteHelp": "¿No sabes qué servicio elegir?",
@@ -192,12 +193,24 @@ const copy = {
     "previousPhoto": "Foto anterior",
     "nextPhoto": "Siguiente foto",
     "photoChoices": "Fotos de la experiencia",
-    "filmDialog": "Momentos de tu traslado",
-    "filmChoices": "Momentos del servicio",
-    "cabinMoment": "A bordo",
-    "arrivalMoment": "Tu llegada",
-    "routeMoment": "En ruta",
-    "filmNote": "Pro Luxury · Una mirada al ambiente de tu próximo traslado."
+    "pauseCarousel": "Pausar carrusel",
+    "resumeCarousel": "Reanudar carrusel",
+    "pauseShort": "Pausar",
+    "resumeShort": "Reanudar",
+    "openPhoto": "Ampliar foto",
+    "luxuryCarousel": "Momentos de Pro Luxury",
+    "groupCarousel": "Espacio para viajar en grupo",
+    "carouselRole": "carrusel",
+    "videosEyebrow": "MOMENTOS DE PRO LUXURY",
+    "videosLine1": "Tu traslado,",
+    "videosLine2": "en movimiento.",
+    "videosIntro": "Conoce el interior, una llegada al hotel y un recorrido junto al mar. Dale play al momento que quieras ver.",
+    "videosMobileHint": "Desliza para descubrir los tres videos",
+    "cabinFilm": "Un momento a bordo",
+    "arrivalFilm": "Tu llegada al hotel",
+    "walkaroundFilm": "En ruta, junto al mar",
+    "playVideo": "Reproducir video",
+    "groupAvailability": "Incorporación prevista · diciembre de 2026"
   },
   "en": {
     "pageTitle": "Pro Carga — Transportation and logistics in the Dominican Republic",
@@ -363,7 +376,7 @@ const copy = {
     "closePhoto": "Close",
     "vehicleLabel": "Any vehicle preference? (optional)",
     "vehicleEmpty": "I would like your guidance",
-    "toyotaOption": "Toyota minibus · 19 passengers",
+    "toyotaOption": "Toyota minibus · 19 passengers (expected December 2026)",
     "navDestinations": "Destinations",
     "luxuryModels": "Chevrolet Suburban and Cadillac options. Ask about availability when arranging your service.",
     "luxuryPoint1": "A transfer that follows your plans",
@@ -371,7 +384,7 @@ const copy = {
     "luxuryPoint2": "Room to enjoy the journey",
     "luxuryPoint2Body": "Take a look at the atmosphere on board before your next trip.",
     "panoramaEyebrow": "A MOMENT FOR YOU",
-    "watchExperience": "A glimpse of your transfer",
+    "watchExperience": "Watch the videos",
     "seeMoments": "See more moments",
     "groupGalleryOpen": "Explore the space for your group",
     "groupCaption": "Family. Friends. Everyone together.",
@@ -380,7 +393,7 @@ const copy = {
     "groupLine2": "bring everyone along.",
     "groupIntro": "From the airport to your hotel, around the island or on the way to a celebration. Let’s arrange a transfer to share the journey from the start.",
     "groupCapacity": "Toyota minibus · 19 passengers",
-    "groupCapacityBody": "Tell us your group size and luggage needs so we can coordinate the right option.",
+    "groupCapacityBody": "The minibus is expected in December 2026. Tell us your travel date, group size and luggage needs so we can discuss the available options.",
     "groupCta": "Arrange our group transfer",
     "groupGalleryCta": "Explore the space for your group",
     "quoteHelp": "Not sure which service to choose?",
@@ -390,22 +403,34 @@ const copy = {
     "previousPhoto": "Previous photo",
     "nextPhoto": "Next photo",
     "photoChoices": "Experience photos",
-    "filmDialog": "Moments from your transfer",
-    "filmChoices": "Service moments",
-    "cabinMoment": "On board",
-    "arrivalMoment": "Your arrival",
-    "routeMoment": "On the road",
-    "filmNote": "Pro Luxury · A glimpse of the atmosphere on your next transfer."
+    "pauseCarousel": "Pause carousel",
+    "resumeCarousel": "Resume carousel",
+    "pauseShort": "Pause",
+    "resumeShort": "Resume",
+    "openPhoto": "Enlarge photo",
+    "luxuryCarousel": "Pro Luxury moments",
+    "groupCarousel": "Space for group travel",
+    "carouselRole": "carousel",
+    "videosEyebrow": "PRO LUXURY MOMENTS",
+    "videosLine1": "Your journey,",
+    "videosLine2": "in motion.",
+    "videosIntro": "Explore the interior, a hotel arrival and a coastal ride. Press play on the moment you would like to see.",
+    "videosMobileHint": "Swipe to discover all three videos",
+    "cabinFilm": "A moment on board",
+    "arrivalFilm": "Your hotel arrival",
+    "walkaroundFilm": "On the road, by the sea",
+    "playVideo": "Play video",
+    "groupAvailability": "Expected arrival · December 2026"
   }
 };
 
 const photoCollections = {
-  luxury: [['suburban-panorama', 'interiorAlt'], ['suburban-front', 'suburbanAlt']],
+  luxury: [['suburban-panorama-clean', 'interiorAlt'], ['suburban-front', 'suburbanAlt']],
   group: [['toyota-hiace-side', 'toyotaSideAlt'], ['toyota-hiace-front', 'toyotaFrontAlt'], ['toyota-hiace-interior-angle', 'toyotaInteriorAngleAlt'], ['toyota-hiace-interior-rows', 'toyotaInteriorRowsAlt']],
 };
 let activeCollection = 'luxury';
 let activePhotoIndex = 0;
-let activeFilm = 'cabin';
+let carouselController = null;
 
 function renderPhoto() {
   const photos = photoCollections[activeCollection];
@@ -426,8 +451,11 @@ function renderPhoto() {
 
 function refreshGalleryLanguage() {
   if (document.querySelector('#media-dialog').open) renderPhoto();
-  const video = document.querySelector('#experience-film');
-  video.setAttribute('aria-label', copy[language][`${activeFilm === 'walkaround' ? 'walkaround' : activeFilm}Video`]);
+  carouselController?.refresh();
+  document.querySelectorAll('.service-films .film-card').forEach(card => {
+    const title = card.querySelector('strong[data-i18n]').dataset.i18n;
+    card.querySelector('.video-start').setAttribute('aria-label', `${copy[language].playVideo}: ${copy[language][title]}`);
+  });
 }
 
 const form = document.querySelector('#quote-form');
@@ -572,12 +600,9 @@ window.addEventListener("scroll",updateHeader,{passive:true});
 updateHeader();
 
 const mediaDialog = document.querySelector('#media-dialog');
-const filmDialog = document.querySelector('#film-dialog');
-const experienceFilm = document.querySelector('#experience-film');
 let activePhotoTrigger;
-let activeFilmTrigger;
 function releaseDialogLock() {
-  if (!mediaDialog.open && !filmDialog.open) document.body.classList.remove('photo-open');
+  if (!mediaDialog.open) document.body.classList.remove('photo-open');
 }
 document.querySelectorAll('[data-open-gallery]').forEach(button => {
   button.addEventListener('click', () => {
@@ -605,26 +630,21 @@ document.querySelector('#media-close').addEventListener('click', () => mediaDial
 mediaDialog.addEventListener('click', event => { if (event.target === mediaDialog) mediaDialog.close(); });
 mediaDialog.addEventListener('close', () => { releaseDialogLock(); activePhotoTrigger?.focus({ preventScroll: true }); });
 
-function chooseFilm(key) {
-  activeFilm = key;
-  experienceFilm.pause();
-  experienceFilm.poster = `./assets/fleet/suburban-${key}-poster.webp`;
-  experienceFilm.querySelector('source').src = `./assets/fleet/suburban-${key}.mp4`;
-  experienceFilm.preload = 'metadata';
-  experienceFilm.load();
-  document.querySelectorAll('[data-film]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.film === key)));
-  refreshGalleryLanguage();
-}
-document.querySelectorAll('[data-open-films]').forEach(button => {
-  button.addEventListener('click', () => {
-    activeFilmTrigger = button;
-    filmDialog.showModal();
-    document.body.classList.add('photo-open');
-    chooseFilm(activeFilm);
-  });
+carouselController = mountCarousels({
+  getText: key => copy[language][key],
 });
-document.querySelectorAll('[data-film]').forEach(button => button.addEventListener('click', () => chooseFilm(button.dataset.film)));
-document.querySelector('#film-close').addEventListener('click', () => filmDialog.close());
-filmDialog.addEventListener('click', event => { if (event.target === filmDialog) filmDialog.close(); });
-filmDialog.addEventListener('close', () => { experienceFilm.pause(); releaseDialogLock(); activeFilmTrigger?.focus({ preventScroll: true }); });
-document.addEventListener('visibilitychange', () => { if (document.hidden) experienceFilm.pause(); });
+
+const serviceFilms = document.querySelectorAll('.service-films video');
+serviceFilms.forEach(video => {
+  const startButton = video.closest('.film-card').querySelector('.video-start');
+  startButton.addEventListener('click', () => { video.play().catch(() => { video.controls = true; }); });
+  video.addEventListener('play', () => {
+    serviceFilms.forEach(other => { if (other !== video) other.pause(); });
+    startButton.hidden = true;
+  });
+  video.addEventListener('pause', () => { startButton.hidden = false; });
+  video.addEventListener('ended', () => { startButton.hidden = false; });
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) serviceFilms.forEach(video => video.pause());
+});
