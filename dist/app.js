@@ -1,5 +1,5 @@
-import { mountCarousels } from './carousel.js?v=20261015-media';
-import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js?v=20261015-media';
+import { mountCarousels } from './carousel.js?v=20261015-refined';
+import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js?v=20261015-refined';
 
 const copy = {
   "es": {
@@ -166,7 +166,7 @@ const copy = {
     "closePhoto": "Cerrar",
     "vehicleLabel": "¿Tienes preferencia de vehículo? (opcional)",
     "vehicleEmpty": "Prefiero que me orienten",
-    "toyotaOption": "Minibús Toyota · 19 pasajeros (previsto diciembre 2026)",
+    "toyotaOption": "Minibús Toyota · 19 pasajeros",
     "navDestinations": "Destinos",
     "luxuryModels": "Opciones Chevrolet Suburban y Cadillac. Consulta disponibilidad al coordinar tu servicio.",
     "luxuryPoint1": "Un traslado que sigue tu agenda",
@@ -183,7 +183,7 @@ const copy = {
     "groupLine2": "es ir juntos.",
     "groupIntro": "Del aeropuerto al hotel, de paseo por la isla o camino a una celebración. Organicemos un traslado para compartir el viaje desde el primer momento.",
     "groupCapacity": "Minibús Toyota · 19 pasajeros",
-    "groupCapacityBody": "El minibús está previsto para diciembre de 2026. Cuéntanos la fecha, cuántos viajan y qué equipaje llevan para consultar las opciones disponibles.",
+    "groupCapacityBody": "Cuéntanos la fecha, cuántos viajan y qué equipaje llevan para coordinar el traslado de tu grupo.",
     "groupCta": "Organizar nuestro traslado",
     "groupGalleryCta": "Conoce el espacio para tu grupo",
     "quoteHelp": "¿No sabes qué servicio elegir?",
@@ -193,10 +193,6 @@ const copy = {
     "previousPhoto": "Foto anterior",
     "nextPhoto": "Siguiente foto",
     "photoChoices": "Fotos de la experiencia",
-    "pauseCarousel": "Pausar carrusel",
-    "resumeCarousel": "Reanudar carrusel",
-    "pauseShort": "Pausar",
-    "resumeShort": "Reanudar",
     "openPhoto": "Ampliar foto",
     "luxuryCarousel": "Momentos de Pro Luxury",
     "groupCarousel": "Espacio para viajar en grupo",
@@ -209,8 +205,7 @@ const copy = {
     "cabinFilm": "Un momento a bordo",
     "arrivalFilm": "Tu llegada al hotel",
     "walkaroundFilm": "En ruta, junto al mar",
-    "playVideo": "Reproducir video",
-    "groupAvailability": "Incorporación prevista · diciembre de 2026"
+    "playVideo": "Reproducir video"
   },
   "en": {
     "pageTitle": "Pro Carga — Transportation and logistics in the Dominican Republic",
@@ -376,7 +371,7 @@ const copy = {
     "closePhoto": "Close",
     "vehicleLabel": "Any vehicle preference? (optional)",
     "vehicleEmpty": "I would like your guidance",
-    "toyotaOption": "Toyota minibus · 19 passengers (expected December 2026)",
+    "toyotaOption": "Toyota minibus · 19 passengers",
     "navDestinations": "Destinations",
     "luxuryModels": "Chevrolet Suburban and Cadillac options. Ask about availability when arranging your service.",
     "luxuryPoint1": "A transfer that follows your plans",
@@ -393,7 +388,7 @@ const copy = {
     "groupLine2": "bring everyone along.",
     "groupIntro": "From the airport to your hotel, around the island or on the way to a celebration. Let’s arrange a transfer to share the journey from the start.",
     "groupCapacity": "Toyota minibus · 19 passengers",
-    "groupCapacityBody": "The minibus is expected in December 2026. Tell us your travel date, group size and luggage needs so we can discuss the available options.",
+    "groupCapacityBody": "Tell us your travel date, group size and luggage needs so we can arrange your group transfer.",
     "groupCta": "Arrange our group transfer",
     "groupGalleryCta": "Explore the space for your group",
     "quoteHelp": "Not sure which service to choose?",
@@ -403,10 +398,6 @@ const copy = {
     "previousPhoto": "Previous photo",
     "nextPhoto": "Next photo",
     "photoChoices": "Experience photos",
-    "pauseCarousel": "Pause carousel",
-    "resumeCarousel": "Resume carousel",
-    "pauseShort": "Pause",
-    "resumeShort": "Resume",
     "openPhoto": "Enlarge photo",
     "luxuryCarousel": "Pro Luxury moments",
     "groupCarousel": "Space for group travel",
@@ -419,13 +410,12 @@ const copy = {
     "cabinFilm": "A moment on board",
     "arrivalFilm": "Your hotel arrival",
     "walkaroundFilm": "On the road, by the sea",
-    "playVideo": "Play video",
-    "groupAvailability": "Expected arrival · December 2026"
+    "playVideo": "Play video"
   }
 };
 
 const photoCollections = {
-  luxury: [['suburban-panorama-clean', 'interiorAlt'], ['suburban-front', 'suburbanAlt']],
+  luxury: [['suburban-panorama-clean', 'interiorAlt'], ['suburban-front-framed', 'suburbanAlt']],
   group: [['toyota-hiace-side', 'toyotaSideAlt'], ['toyota-hiace-front', 'toyotaFrontAlt'], ['toyota-hiace-interior-angle', 'toyotaInteriorAngleAlt'], ['toyota-hiace-interior-rows', 'toyotaInteriorRowsAlt']],
 };
 let activeCollection = 'luxury';

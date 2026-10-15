@@ -87,20 +87,26 @@ try {
   assert.equal(await page.locator('[data-carousel="luxury"] .carousel-slide').count(),2);
   assert.equal(await page.locator('[data-carousel="group"] .carousel-slide').count(),4);
   assert.match(await page.locator('[data-carousel="luxury"] .carousel-slide img').first().getAttribute('src'),/panorama-clean/);
-  assert.match(await page.locator('[data-i18n="groupAvailability"]').innerText(),/diciembre.*2026/);
+  assert.equal(await page.locator('.group-availability, .photo-expand, .carousel-counter, .carousel-actions, .service-shortcuts small').count(),0);
+  assert.doesNotMatch(await page.locator('body').innerText(),/diciembre|December|Incorporación prevista|Expected arrival/i);
   for(const name of ['luxury','group']) {
     const carousel=page.locator(`[data-carousel="${name}"]`);
-    assert.equal(await carousel.locator('[data-carousel-toggle]').getAttribute('aria-pressed'),'true');
-    await carousel.locator('[data-carousel-next]').click();
+    assert.equal(await carousel.locator('[data-carousel-toggle], [data-carousel-prev], [data-carousel-next]').count(),0);
+    await carousel.locator('[data-carousel-go="1"]').click();
     assert.equal(await carousel.locator('.carousel-slide.is-active').getAttribute('data-gallery-index'),'1');
     await carousel.locator('[data-carousel-go="0"]').click();
     assert.equal(await carousel.locator('.carousel-slide.is-active').getAttribute('data-gallery-index'),'0');
   }
-  passed('Inline photo carousels retain two luxury and four group images, manual controls and reduced-motion defaults');
+  passed('Photo carousels retain two luxury and four group images with dots only; date notices and image arrows removed');
   for(const [collection,expected] of [['luxury',2],['group',4]]) {
     const trigger=page.locator(`[data-open-gallery="${collection}"]`).first();
     await trigger.click();
     assert.equal(await page.locator('#media-dialog').isVisible(),true);
+    const iconAlignment=await page.locator('.media-arrow').evaluateAll(buttons=>buttons.map(button=>{
+      const a=button.getBoundingClientRect(), b=button.querySelector('svg').getBoundingClientRect();
+      return {dx:Math.abs(a.x+a.width/2-b.x-b.width/2),dy:Math.abs(a.y+a.height/2-b.y-b.height/2)};
+    }));
+    assert.ok(iconAlignment.every(icon=>icon.dx<1 && icon.dy<1),JSON.stringify(iconAlignment));
     assert.equal(await page.locator('.media-thumb:visible').count(),expected);
     const sources=[];
     for(let i=0;i<expected;i++) {
@@ -110,6 +116,7 @@ try {
       assert.equal(await page.locator('#media-count').innerText(),`${i+1} / ${expected}`);
     }
     assert.equal(new Set(sources).size,expected);
+    if(collection==='luxury') assert.ok(sources.some(src=>src.includes('front-framed')));
     if(collection==='group') {
       assert.equal(sources.filter(src=>src.includes('interior')).length,2);
       assert.equal(sources.filter(src=>!src.includes('interior')).length,2);
@@ -125,7 +132,7 @@ try {
     await page.locator('#media-close').click();
     assert.equal(await page.locator('#media-dialog').isVisible(),false);
   }
-  passed('Optional experience galleries retain full photos, Toyota two outside/two inside, keyboard navigation and focus');
+  passed('Photo galleries retain the framed Suburban, Toyota two outside/two inside, centered SVG arrows and keyboard focus');
   const anchors=await page.locator('a[href^="#"]').evaluateAll(links=>links.map(link=>({href:link.getAttribute('href'),exists:!!document.getElementById(link.getAttribute('href').slice(1))})));
   assert.ok(anchors.every(anchor=>anchor.exists));
   await page.locator('#navigation a[href="#servicios"]').click();
@@ -148,6 +155,7 @@ try {
   assert.equal(await page.locator('html').getAttribute('lang'),'en');
   assert.match(await page.locator('#origin-error').innerText(),/Enter a location/);
   await translationsComplete(page,'English');
+  assert.doesNotMatch(await page.locator('body').innerText(),/December|expected arrival/i);
   await noOverflow(page,'Desktop EN 1440px');
   await page.goto(`${base}/?lang=en`);
   await page.waitForFunction(()=>document.documentElement.lang==='en');
@@ -291,22 +299,19 @@ try {
   assert.match(await page.locator('[data-i18n="faq2Answer"]').innerText(),/No\. The website only prepares a quote request/);
   passed('FAQ expands and makes non-confirmation explicit');
   const autoPage=await context.newPage();
-  await autoPage.emulateMedia({reducedMotion:'no-preference'});
+  await autoPage.emulateMedia({reducedMotion:'reduce'});
   await autoPage.goto(base);
   const autoCarousel=autoPage.locator('[data-carousel="luxury"]');
   await autoCarousel.scrollIntoViewIfNeeded();
   await autoPage.mouse.move(0,0);
   await autoPage.waitForFunction(()=>document.querySelector('[data-carousel="luxury"]').dataset.activeIndex==='1',null,{timeout:10000});
   assert.equal(await autoCarousel.locator('.carousel-slide.is-active').getAttribute('data-gallery-index'),'1');
-  await autoCarousel.locator('[data-carousel-toggle]').click();
-  assert.equal(await autoCarousel.locator('[data-carousel-toggle]').getAttribute('aria-pressed'),'true');
-  await autoPage.mouse.move(0,0);
-  await autoPage.locator('h1').evaluate(element=>{element.tabIndex=-1;element.focus({preventScroll:true});});
-  const pausedIndex=await autoCarousel.getAttribute('data-active-index');
-  await autoPage.waitForTimeout(6800);
-  assert.equal(await autoCarousel.getAttribute('data-active-index'),pausedIndex);
+  await autoCarousel.locator('[data-carousel-go="0"]').click();
+  assert.equal(await autoCarousel.getAttribute('data-active-index'),'0');
+  // Leave focus and the pointer on a dot: manual navigation must not stop rotation.
+  await autoPage.waitForFunction(()=>document.querySelector('[data-carousel="luxury"]').dataset.activeIndex==='1',null,{timeout:10000});
   await autoPage.close();
-  passed('Photo carousel advances automatically after six seconds and stays still when paused');
+  passed('Photo carousel advances automatically and keeps rotating after choosing a dot');
   assert.deepEqual(report.externalRequests,[]);
   assert.deepEqual(report.consoleErrors,[]);
   passed('No external network requests or browser errors during tests');

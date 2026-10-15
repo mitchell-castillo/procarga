@@ -1,6 +1,6 @@
 # Pro Carga — transporte y logística
 
-Medios y verificación vigentes: [MEDIA-UPDATE.md](MEDIA-UPDATE.md); estructura de servicio: [SERVICE-EXPERIENCE.md](SERVICE-EXPERIENCE.md). La web usa el logo original de marca, azul marino, celeste y blanco, con Manrope alojada localmente. [CLIENT-REFRESH.md](CLIENT-REFRESH.md), [BRAND-UPDATE.md](BRAND-UPDATE.md) y [REDESIGN.md](REDESIGN.md) documentan versiones anteriores.
+Diseño y verificación vigentes: [VISUAL-POLISH.md](VISUAL-POLISH.md); estructura de servicio: [SERVICE-EXPERIENCE.md](SERVICE-EXPERIENCE.md). La web usa el logo original de marca, azul marino, celeste y blanco, con Manrope alojada localmente. [MEDIA-UPDATE.md](MEDIA-UPDATE.md), [CLIENT-REFRESH.md](CLIENT-REFRESH.md), [BRAND-UPDATE.md](BRAND-UPDATE.md) y [REDESIGN.md](REDESIGN.md) documentan versiones anteriores.
 
 Web estática ES/EN para organizar traslados de aeropuerto, turismo, Pro Luxury, eventos, flete, carga y mudanzas en República Dominicana. Presenta los servicios según la ocasión del visitante, con carruseles de fotos y tres videos visibles en la página. El formulario prepara un mensaje que el visitante revisa y decide abrir y enviar por WhatsApp al **+1 809 253 2740**. Carga no requiere pasajeros ni vehículo de pasajeros.
 
@@ -46,7 +46,7 @@ Las pruebas de navegador levantan su propio servidor efímero en `127.0.0.1`, lo
 - Idioma ES/EN, títulos, metadatos, textos, etiquetas, validación y mensajes. El idioma se conserva en la URL; los datos de la ruta no se guardan en almacenamiento persistente.
 - Origen, destino, fecha y pasajeros obligatorios. Fecha de referencia: calendario de República Dominicana. Rechaza fechas pasadas/imposibles, lugares vacíos o idénticos y pasajeros no enteros positivos.
 - Servicio y detalles opcionales; la preferencia de vehículo está dentro de los detalles. Los enlaces de servicios preparan la solicitud sin borrar la ruta. La capacidad de 19 pasajeros del minibús es la proporcionada por el cliente; el formulario admite grupos de otros tamaños para consultar alternativas.
-- Carruseles automáticos de fotos con pausa, navegación y ampliación; dos exteriores y dos interiores del minibús. Los tres videos locales aparecen directamente en la página, con controles y sin reproducción automática. El minibús se presenta como incorporación prevista para diciembre de 2026, según el cliente.
+- Carruseles automáticos de fotos con bolitas y ampliación; dos exteriores y dos interiores del minibús. Los tres videos locales aparecen directamente en la página, con controles y sin reproducción automática. Se retiró el aviso de incorporación futura del minibús a petición del propietario, porque la página se lanzará cuando ya esté disponible.
 - El visitante ve el borrador completo antes de continuar a WhatsApp. Editar conserva los campos; cambiar idioma traduce el borrador.
 - Sin precios automáticos, pagos, cuentas, backend, analítica, cookies, reservas confirmadas ni solicitudes de red en segundo plano.
 

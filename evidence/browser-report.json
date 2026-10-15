@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-15T19:37:27.391Z",
+  "startedAt": "2026-10-15T19:59:31.631Z",
   "browser": [
     {
       "name": "Chromium",
@@ -37,11 +37,11 @@
       "status": "passed"
     },
     {
-      "check": "Inline photo carousels retain two luxury and four group images, manual controls and reduced-motion defaults",
+      "check": "Photo carousels retain two luxury and four group images with dots only; date notices and image arrows removed",
       "status": "passed"
     },
     {
-      "check": "Optional experience galleries retain full photos, Toyota two outside/two inside, keyboard navigation and focus",
+      "check": "Photo galleries retain the framed Suburban, Toyota two outside/two inside, centered SVG arrows and keyboard focus",
       "status": "passed"
     },
     {
@@ -141,7 +141,7 @@
       "status": "passed"
     },
     {
-      "check": "Photo carousel advances automatically after six seconds and stays still when paused",
+      "check": "Photo carousel advances automatically and keeps rotating after choosing a dot",
       "status": "passed"
     },
     {
@@ -153,5 +153,5 @@
   "consoleErrors": [],
   "note": "Synthetic inputs only. No external page opened or message sent.",
   "status": "passed",
-  "completedAt": "2026-10-15T19:37:47.684Z"
+  "completedAt": "2026-10-15T19:59:51.637Z"
 }
