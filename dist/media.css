@@ -1,13 +1,13 @@
 /* Photo carousels retain the service-led split layout. */
 .inline-carousel{min-width:0;width:100%}
-.carousel-stage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#e5edf0}
+.carousel-stage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#e5edf0;touch-action:pan-y pinch-zoom}
 .carousel-group .carousel-stage{aspect-ratio:1.1}
 .carousel-slide{position:absolute;inset:0;height:100%;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .6s ease,visibility .6s}
 .carousel-slide.is-active{opacity:1;visibility:visible;pointer-events:auto;z-index:1}
 .carousel-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .carousel-group .carousel-slide img{object-position:center}
-.carousel-controls{display:flex;align-items:center;padding:6px 0 10px;color:var(--navy)}
-.carousel-dots{display:flex;align-items:center;gap:0;margin-left:-12px}
+.carousel-controls{display:flex;align-items:center;justify-content:center;padding:6px 0 10px;color:var(--navy)}
+.carousel-dots{display:flex;align-items:center;gap:0;margin:0}
 .carousel-dot{position:relative;display:block;width:36px;height:44px;padding:0;background:none}
 .carousel-dot:after{content:'';position:absolute;width:8px;height:8px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:#9ebdc9}
 .carousel-dot[aria-pressed=true]:after{background:var(--blue)}
@@ -19,9 +19,6 @@
 .service-films .film-card{border:1px solid var(--line);border-radius:12px;background:white;overflow:hidden;min-width:0}
 .film-player{position:relative;background:#062a40}
 .service-films video{display:block;width:100%;height:470px;aspect-ratio:auto;object-fit:contain;background:#062a40;border-radius:0}
-.video-start{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:65px;height:65px;display:grid;place-items:center;border:1px solid #ffffffbb;border-radius:50%;background:#073b59c9;backdrop-filter:blur(4px);color:white;box-shadow:0 5px 24px #0003}
-.video-start>span{font-size:36px;line-height:1;padding-left:4px}
-.video-start:hover{background:#087da1;transform:translate(-50%,-50%) scale(1.05)}
 .service-films .film-card figcaption{padding:20px 22px;display:flex;align-items:baseline;gap:12px}
 .service-films .film-card figcaption>span{font-size:12px;color:var(--blue)}
 .service-films .film-card figcaption strong{font-size:16px;line-height:1.7;font-weight:600}
@@ -50,7 +47,7 @@
   .group-copy>p.group-availability{font-size:13px}
 }
 @media(max-width:380px){.carousel-controls{column-gap:8px;row-gap:5px}.carousel-dots{gap:0}.carousel-dot{width:23px}.carousel-actions{gap:4px}.carousel-actions>button{min-width:36px}.carousel-actions>.carousel-toggle{min-width:80px}.carousel-group .carousel-counter{margin-left:0}.carousel-group .carousel-actions{margin-left:auto}.service-films video{height:400px}}
-@media(prefers-reduced-motion:reduce){.carousel-slide,.carousel-slide img,.video-start{transition:none}}
+@media(prefers-reduced-motion:reduce){.carousel-slide,.carousel-slide img{transition:none}}
 
 /* Final visual polish: only dots below the image, with centered gallery icons. */
 .carousel-luxury .carousel-slide[data-gallery-index="0"] img{object-position:50% 34%}

@@ -1,5 +1,5 @@
-import { mountCarousels } from './carousel.js?v=20261015-refined';
-import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js?v=20261015-refined';
+import { mountCarousels } from './carousel.js?v=20261015-swipe';
+import { contactUrl, localDateString, validateQuote, quoteMessage, whatsappUrl } from './quote.js?v=20261015-swipe';
 
 const copy = {
   "es": {
@@ -204,8 +204,7 @@ const copy = {
     "videosMobileHint": "Desliza para descubrir los tres videos",
     "cabinFilm": "Un momento a bordo",
     "arrivalFilm": "Tu llegada al hotel",
-    "walkaroundFilm": "En ruta, junto al mar",
-    "playVideo": "Reproducir video"
+    "walkaroundFilm": "En ruta, junto al mar"
   },
   "en": {
     "pageTitle": "Pro Carga — Transportation and logistics in the Dominican Republic",
@@ -409,8 +408,7 @@ const copy = {
     "videosMobileHint": "Swipe to discover all three videos",
     "cabinFilm": "A moment on board",
     "arrivalFilm": "Your hotel arrival",
-    "walkaroundFilm": "On the road, by the sea",
-    "playVideo": "Play video"
+    "walkaroundFilm": "On the road, by the sea"
   }
 };
 
@@ -442,10 +440,6 @@ function renderPhoto() {
 function refreshGalleryLanguage() {
   if (document.querySelector('#media-dialog').open) renderPhoto();
   carouselController?.refresh();
-  document.querySelectorAll('.service-films .film-card').forEach(card => {
-    const title = card.querySelector('strong[data-i18n]').dataset.i18n;
-    card.querySelector('.video-start').setAttribute('aria-label', `${copy[language].playVideo}: ${copy[language][title]}`);
-  });
 }
 
 const form = document.querySelector('#quote-form');
@@ -626,14 +620,9 @@ carouselController = mountCarousels({
 
 const serviceFilms = document.querySelectorAll('.service-films video');
 serviceFilms.forEach(video => {
-  const startButton = video.closest('.film-card').querySelector('.video-start');
-  startButton.addEventListener('click', () => { video.play().catch(() => { video.controls = true; }); });
   video.addEventListener('play', () => {
     serviceFilms.forEach(other => { if (other !== video) other.pause(); });
-    startButton.hidden = true;
   });
-  video.addEventListener('pause', () => { startButton.hidden = false; });
-  video.addEventListener('ended', () => { startButton.hidden = false; });
 });
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) serviceFilms.forEach(video => video.pause());

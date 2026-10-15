@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-15T19:59:31.631Z",
+  "startedAt": "2026-10-15T20:25:45.378Z",
   "browser": [
     {
       "name": "Chromium",
@@ -33,11 +33,15 @@
       "status": "passed"
     },
     {
-      "check": "All three videos are visible on the page, decode on play, and pause other clips",
+      "check": "All three videos play through native controls without custom overlays, decode and pause other clips",
       "status": "passed"
     },
     {
       "check": "Photo carousels retain two luxury and four group images with dots only; date notices and image arrows removed",
+      "status": "passed"
+    },
+    {
+      "check": "Desktop 1440px: both photo dot groups are centered",
       "status": "passed"
     },
     {
@@ -97,6 +101,10 @@
       "status": "passed"
     },
     {
+      "check": "Mobile 390px: both photo dot groups are centered",
+      "status": "passed"
+    },
+    {
       "check": "Mobile reading paragraphs use at least 16px text",
       "status": "passed"
     },
@@ -133,11 +141,31 @@
       "status": "passed"
     },
     {
+      "check": "Small mobile 320px: both photo dot groups are centered",
+      "status": "passed"
+    },
+    {
       "check": "Tablet EN 768px: no horizontal overflow",
       "status": "passed"
     },
     {
       "check": "FAQ expands and makes non-confirmation explicit",
+      "status": "passed"
+    },
+    {
+      "check": "Touch luxury: swipes navigate both ways and wrap; small movements keep the photo; taps still enlarge",
+      "status": "passed"
+    },
+    {
+      "check": "Touch group: swipes navigate both ways and wrap; small movements keep the photo; taps still enlarge",
+      "status": "passed"
+    },
+    {
+      "check": "Vertical touch gestures scroll the page without changing or opening photos",
+      "status": "passed"
+    },
+    {
+      "check": "Automatic rotation resumes after finger navigation",
       "status": "passed"
     },
     {
@@ -153,5 +181,5 @@
   "consoleErrors": [],
   "note": "Synthetic inputs only. No external page opened or message sent.",
   "status": "passed",
-  "completedAt": "2026-10-15T19:59:51.637Z"
+  "completedAt": "2026-10-15T20:26:16.617Z"
 }

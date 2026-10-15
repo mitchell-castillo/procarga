@@ -24,6 +24,28 @@ async function translationsComplete(page,label) {
   assert.deepEqual(missing,[]);
   passed(`${label}: all translation keys populated`);
 }
+async function centeredDots(page,label) {
+  const offsets=await page.locator('[data-carousel]').evaluateAll(carousels=>carousels.map(carousel=>{
+    const image=carousel.querySelector('.carousel-stage').getBoundingClientRect();
+    const dots=carousel.querySelector('.carousel-dots').getBoundingClientRect();
+    return Math.abs(image.x+image.width/2-dots.x-dots.width/2);
+  }));
+  assert.ok(offsets.every(offset=>offset<1),`${label}: ${JSON.stringify(offsets)}`);
+  passed(`${label}: both photo dot groups are centered`);
+}
+async function touchSwipe(page,stage,dx,dy=0) {
+  await stage.scrollIntoViewIfNeeded();
+  const box=await stage.boundingBox();
+  const x=box.x+box.width/2-dx/2, y=box.y+box.height/2-dy/2;
+  const session=await page.context().newCDPSession(page);
+  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:0}]});
+  for(let step=1;step<=8;step++) {
+    await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx*step/8,y:y+dy*step/8,id:0}]});
+    await page.waitForTimeout(20);
+  }
+  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await session.detach();
+}
 try {
   browser=await playwright.chromium.launch({headless:true,...(process.env.TEST_BROWSER_EXECUTABLE?{executablePath:process.env.TEST_BROWSER_EXECUTABLE}:{})});
   report.browser.push({name:'Chromium',version:browser.version(),playwright:require(resolve(process.env.PLAYWRIGHT_MODULE_PATH || 'node_modules/playwright','package.json')).version});
@@ -62,6 +84,7 @@ try {
   passed('Service-led page has no vehicle shopping controls; vehicle preference is optional and collapsed');
   const films=page.locator('#momentos video');
   assert.equal(await films.count(),3);
+  assert.equal(await page.locator('.video-start').count(),0);
   assert.equal(await page.locator('#film-dialog').count(),0);
   for(let index=0;index<3;index++) {
     const film=films.nth(index);
@@ -72,7 +95,10 @@ try {
     const mediaResponse=await context.request.head(new URL(source,base).href);
     assert.equal(mediaResponse.status(),200);
     assert.match(mediaResponse.headers()['content-type'],/^video\/mp4/);
-    await film.locator('..').locator('.video-start').click();
+    await film.scrollIntoViewIfNeeded();
+    const videoBox=await film.boundingBox();
+    // Exercise Chromium's own play control, with no page overlay.
+    await page.mouse.click(videoBox.x+20,videoBox.y+videoBox.height-30);
     await film.evaluate(video=>new Promise((resolve,reject)=>{
       if(!video.paused && video.readyState>=2) { resolve(); return; }
       video.addEventListener('playing',()=>resolve(),{once:true});
@@ -82,7 +108,7 @@ try {
     if(index>0) assert.equal(await films.nth(index-1).evaluate(video=>video.paused),true);
   }
   await films.last().evaluate(video=>video.pause());
-  passed('All three videos are visible on the page, decode on play, and pause other clips');
+  passed('All three videos play through native controls without custom overlays, decode and pause other clips');
   assert.equal(await page.locator('[data-carousel]').count(),2);
   assert.equal(await page.locator('[data-carousel="luxury"] .carousel-slide').count(),2);
   assert.equal(await page.locator('[data-carousel="group"] .carousel-slide').count(),4);
@@ -98,6 +124,7 @@ try {
     assert.equal(await carousel.locator('.carousel-slide.is-active').getAttribute('data-gallery-index'),'0');
   }
   passed('Photo carousels retain two luxury and four group images with dots only; date notices and image arrows removed');
+  await centeredDots(page,'Desktop 1440px');
   for(const [collection,expected] of [['luxury',2],['group',4]]) {
     const trigger=page.locator(`[data-open-gallery="${collection}"]`).first();
     await trigger.click();
@@ -236,6 +263,7 @@ try {
   await page.goto(base);
   await page.setViewportSize({width:390,height:844});
   await noOverflow(page,'Mobile ES 390px');
+  await centeredDots(page,'Mobile 390px');
   const mobileType=await page.locator('.hero-description, .service-card p, .luxury-copy>p:not(.eyebrow):not(.luxury-model-note), .group-copy>p:not(.eyebrow):not(.group-availability), .steps p, .faq-list p').evaluateAll(elements=>elements.map(element=>({
     text:element.textContent.slice(0,50), size:parseFloat(getComputedStyle(element).fontSize),
   })));
@@ -291,6 +319,7 @@ try {
   await page.goto(`${base}/?lang=en`);
   await page.setViewportSize({width:320,height:812});
   await noOverflow(page,'Small mobile EN 320px');
+  await centeredDots(page,'Small mobile 320px');
   await page.setViewportSize({width:768,height:1024});
   await noOverflow(page,'Tablet EN 768px');
   await page.setViewportSize({width:1440,height:1000});
@@ -298,6 +327,47 @@ try {
   await page.locator('[data-i18n="faq2Question"]').click();
   assert.match(await page.locator('[data-i18n="faq2Answer"]').innerText(),/No\. The website only prepares a quote request/);
   passed('FAQ expands and makes non-confirmation explicit');
+  const touchContext=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+  await touchContext.route('**/*',async route=>{
+    if(new URL(route.request().url()).origin!==base) {report.externalRequests.push(route.request().url());await route.abort();}
+    else await route.continue();
+  });
+  const touchPage=await touchContext.newPage();
+  touchPage.on('pageerror',error=>report.consoleErrors.push(String(error)));
+  touchPage.on('console',message=>{if(message.type()==='error')report.consoleErrors.push(message.text());});
+  await touchPage.goto(base);
+  for(const name of ['luxury','group']) {
+    const carousel=touchPage.locator(`[data-carousel="${name}"]`);
+    const stage=carousel.locator('.carousel-stage');
+    await touchSwipe(touchPage,stage,-120);
+    assert.equal(await carousel.getAttribute('data-active-index'),'1');
+    await touchSwipe(touchPage,stage,120);
+    assert.equal(await carousel.getAttribute('data-active-index'),'0');
+    await touchSwipe(touchPage,stage,120);
+    assert.equal(await carousel.getAttribute('data-active-index'),name==='group'?'3':'1');
+    await touchSwipe(touchPage,stage,-120);
+    assert.equal(await carousel.getAttribute('data-active-index'),'0');
+    assert.equal(await touchPage.locator('#media-dialog').isVisible(),false);
+    await touchSwipe(touchPage,stage,8);
+    assert.equal(await carousel.getAttribute('data-active-index'),'0');
+    if(await touchPage.locator('#media-dialog').isVisible()) await touchPage.locator('#media-close').tap();
+    await stage.locator('.is-active').tap();
+    assert.equal(await touchPage.locator('#media-dialog').isVisible(),true);
+    await touchPage.locator('#media-close').tap();
+    passed(`Touch ${name}: swipes navigate both ways and wrap; small movements keep the photo; taps still enlarge`);
+  }
+  const groupStage=touchPage.locator('[data-carousel="group"] .carousel-stage');
+  await groupStage.scrollIntoViewIfNeeded();
+  const scrollBefore=await touchPage.evaluate(()=>scrollY);
+  await touchSwipe(touchPage,groupStage,2,-130);
+  await touchPage.waitForFunction(before=>scrollY>before+30,scrollBefore,{timeout:3000});
+  assert.equal(await touchPage.locator('[data-carousel="group"]').getAttribute('data-active-index'),'0');
+  assert.equal(await touchPage.locator('#media-dialog').isVisible(),false);
+  passed('Vertical touch gestures scroll the page without changing or opening photos');
+  await touchSwipe(touchPage,groupStage,-120);
+  await touchPage.waitForFunction(()=>document.querySelector('[data-carousel="group"]').dataset.activeIndex==='2',null,{timeout:10000});
+  passed('Automatic rotation resumes after finger navigation');
+  await touchContext.close();
   const autoPage=await context.newPage();
   await autoPage.emulateMedia({reducedMotion:'reduce'});
   await autoPage.goto(base);

@@ -8,6 +8,7 @@ export function mountCarousels({ getText }) {
     index: 0,
     visible: false,
     lastChange: Date.now(),
+    gesture: null,
   }));
 
   function render(state, manual = false) {
@@ -46,6 +47,48 @@ export function mountCarousels({ getText }) {
 
   states.forEach(state => {
     const { element } = state;
+    const stage = element.querySelector('.carousel-stage');
+    let suppressClick = false;
+    stage.addEventListener('pointerdown', event => {
+      suppressClick = false;
+      if (!event.isPrimary) { state.gesture = null; return; }
+      if (event.pointerType === 'mouse') return;
+      state.gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, horizontal: false };
+    });
+    stage.addEventListener('pointermove', event => {
+      const gesture = state.gesture;
+      if (!gesture || gesture.id !== event.pointerId) return;
+      const dx = event.clientX - gesture.x;
+      const dy = event.clientY - gesture.y;
+      if (!gesture.horizontal && Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        gesture.horizontal = true;
+        stage.setPointerCapture(event.pointerId);
+      }
+      if (gesture.horizontal) event.preventDefault();
+    });
+    stage.addEventListener('pointerup', event => {
+      const gesture = state.gesture;
+      if (!gesture || gesture.id !== event.pointerId) return;
+      const dx = event.clientX - gesture.x;
+      const dy = event.clientY - gesture.y;
+      suppressClick = gesture.horizontal || Math.hypot(dx, dy) > 12;
+      state.gesture = null;
+      state.lastChange = Date.now();
+      if (gesture.horizontal && Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        select(state, state.index + (dx < 0 ? 1 : -1), true);
+      }
+    });
+    stage.addEventListener('pointercancel', () => {
+      state.gesture = null;
+      state.lastChange = Date.now();
+    });
+    // A swipe must not also trigger the photograph's enlargement button.
+    stage.addEventListener('click', event => {
+      if (!suppressClick || event.detail === 0) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      suppressClick = false;
+    }, true);
     element.querySelectorAll('[data-carousel-go]').forEach(button => {
       button.addEventListener('click', () => select(state, Number(button.dataset.carouselGo), true));
     });
@@ -60,8 +103,8 @@ export function mountCarousels({ getText }) {
     const blocked = document.hidden || document.querySelector('dialog[open]') ||
       [...document.querySelectorAll('video')].some(video => !video.paused && !video.ended);
     states.forEach(state => {
-      const photoFocused = state.slides.some(slide => slide.contains(document.activeElement));
-      if (blocked || !state.visible || photoFocused) {
+      const photoFocused = state.slides.some(slide => slide.contains(document.activeElement) && document.activeElement.matches(':focus-visible'));
+      if (blocked || !state.visible || state.gesture || photoFocused) {
         state.lastChange = Date.now();
         return;
       }
